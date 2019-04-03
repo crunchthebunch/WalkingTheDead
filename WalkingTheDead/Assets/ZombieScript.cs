@@ -12,8 +12,17 @@ enum FollowTarget
 
 public class ZombieScript : MonoBehaviour
 {
+
+    float wanderRadius = 5.0f;
+    float wanderChance = 0.001f;
+    float wanderSpeed = 2;
+    bool wandering;
+
+    float moveSpeed = 10.0f;
+    
     Vector3 desiredPosition;
     Vector3 commandPosition;
+    Vector3 wanderPosition = Vector3.negativeInfinity;
 
     GameObject player;
     NavMeshAgent agent;
@@ -42,9 +51,8 @@ public class ZombieScript : MonoBehaviour
     {
         ProcessInput();
         SetDesiredPosition();
-
-        //Move to Desired position
-        agent.SetDestination(desiredPosition);
+        SetWandering();
+        Move();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -53,6 +61,7 @@ public class ZombieScript : MonoBehaviour
             humansInRange.Add(other);
             GetClosestHuman();
             target = FollowTarget.HUMANS;
+            wandering = false;
         }
     }
 
@@ -79,9 +88,14 @@ public class ZombieScript : MonoBehaviour
 
     void SetDesiredPosition()
     {
+        
         if (target == FollowTarget.PLAYER)
         {
-            desiredPosition = player.transform.position;
+            if (player.transform.position != desiredPosition)
+            {
+                wandering = false;
+                desiredPosition = player.transform.position;
+            }
         }
         else if (target == FollowTarget.COMMAND)
         {
@@ -110,12 +124,14 @@ public class ZombieScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            wandering = false;
             GetCommandPosition();
             target = FollowTarget.COMMAND;
         }
         
         if (Input.GetMouseButtonDown(1))
         {
+            wandering = false;
             target = FollowTarget.PLAYER;
             commandPosition = Vector3.negativeInfinity;
         }
@@ -133,6 +149,37 @@ public class ZombieScript : MonoBehaviour
         else commandPosition = Vector3.negativeInfinity;
     }
 
+    void Wander()
+    {
+        if (wanderPosition == Vector3.negativeInfinity || Random.value < wanderChance)
+        {
+            wanderPosition = desiredPosition + Random.insideUnitSphere * wanderRadius;
+        }
+        agent.SetDestination(wanderPosition);
+    }
+    void SetWandering()
+    {
+        if (Mathf.Abs(Vector3.Distance(transform.position, desiredPosition)) < wanderRadius && target != FollowTarget.HUMANS && wandering == false)
+        {
+            wandering = true;
+            wanderPosition = desiredPosition + Random.onUnitSphere * wanderRadius;
+        }
+
+        agent.speed = wanderSpeed;
+    }
+
+    void Move()
+    {
+        if (wandering)
+        {
+            Wander();
+        }
+        else
+        {
+            agent.speed = moveSpeed;
+            agent.SetDestination(desiredPosition);
+        }
+    }
     private void OnDrawGizmosSelected()
     {
         if (!Application.isPlaying) return;
@@ -140,6 +187,7 @@ public class ZombieScript : MonoBehaviour
         Gizmos.DrawSphere(transform.position, detectionRange.radius);
         Gizmos.color = new Color(1, 0.8f, 0.016f, 0.1f);
         Gizmos.DrawSphere(desiredPosition, 2f);
+        Gizmos.DrawSphere(desiredPosition, wanderRadius);
         if (humansInRange.Count > 0)
         {
             Gizmos.color = Color.grey;
@@ -154,5 +202,6 @@ public class ZombieScript : MonoBehaviour
                 Gizmos.DrawLine(transform.position, closestHuman.transform.position);
             }
         }
+        
     }
 }
