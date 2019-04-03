@@ -23,7 +23,7 @@ public class TopDownCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         HandleCamera();
 
