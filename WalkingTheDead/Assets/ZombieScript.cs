@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+enum FollowTarget
+{
+    PLAYER,
+    HUMANS,
+    COMMAND
+}
+
 public class ZombieScript : MonoBehaviour
 {
     Vector3 desiredPosition;
+    Vector3 commandPosition;
 
-    Transform player;
+    GameObject player;
     NavMeshAgent agent;
     
     List<Collider> humansInRange = new List<Collider>();
@@ -15,22 +23,24 @@ public class ZombieScript : MonoBehaviour
 
     SphereCollider detectionRange;
     CapsuleCollider attackRange;
-    
+
+    Camera mainCamera;
+    FollowTarget target = FollowTarget.PLAYER;
+
 
 
     private void Start()
     {
-        player = GameObject.Find("Fake Player").transform;
+        player = GameObject.Find("PlayerCharacter");
         agent = GetComponent<NavMeshAgent>();
         detectionRange = GetComponent<SphereCollider>();
         attackRange = GetComponent<CapsuleCollider>();
-        
+        mainCamera = GameObject.Find("PlayerCharacter/Camera").GetComponent<Camera>();
     }
 
     private void Update()
     {
-
-        //Set DesiredPosition
+        ProcessInput();
         SetDesiredPosition();
 
         //Move to Desired position
@@ -41,9 +51,11 @@ public class ZombieScript : MonoBehaviour
         if (other.tag == "Human")
         {
             humansInRange.Add(other);
-            
+            GetClosestHuman();
+            target = FollowTarget.HUMANS;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Human")
@@ -53,7 +65,13 @@ public class ZombieScript : MonoBehaviour
                 if (humansInRange[i] == other)
                 {
                     humansInRange.RemoveAt(i);
+                    if (humansInRange.Count == 0)
+                    {
+                        if (commandPosition == Vector3.negativeInfinity) target = FollowTarget.PLAYER;
+                        else target = FollowTarget.COMMAND;
+                    }
                     break;
+                    
                 }
             }
         }
@@ -61,13 +79,18 @@ public class ZombieScript : MonoBehaviour
 
     void SetDesiredPosition()
     {
-
-        if (humansInRange.Count > 0)
+        if (target == FollowTarget.PLAYER)
         {
-            GetClosestHuman();
+            desiredPosition = player.transform.position;
+        }
+        else if (target == FollowTarget.COMMAND)
+        {
+            desiredPosition = commandPosition;
+        }
+        else if (target == FollowTarget.HUMANS)
+        {
             desiredPosition = closestHuman.transform.position;
         }
-        else desiredPosition = player.position;
     }
 
     void GetClosestHuman()
@@ -83,11 +106,37 @@ public class ZombieScript : MonoBehaviour
         }
     }
 
+    void ProcessInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            GetCommandPosition();
+            target = FollowTarget.COMMAND;
+        }
+        
+        if (Input.GetMouseButtonDown(1))
+        {
+            target = FollowTarget.PLAYER;
+            commandPosition = Vector3.negativeInfinity;
+        }
+    }
+
+    void GetCommandPosition()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
+
+        if (Physics.Raycast(ray, out hitInfo))
+        {
+            commandPosition = hitInfo.point;
+        }
+        else commandPosition = Vector3.negativeInfinity;
+    }
 
     private void OnDrawGizmosSelected()
     {
         if (!Application.isPlaying) return;
-        Gizmos.color =  new Color(0,0,1, 0.1f);
+        Gizmos.color = new Color(0, 0, 1, 0.1f);
         Gizmos.DrawSphere(transform.position, detectionRange.radius);
         Gizmos.color = new Color(1, 0.8f, 0.016f, 0.1f);
         Gizmos.DrawSphere(desiredPosition, 2f);
