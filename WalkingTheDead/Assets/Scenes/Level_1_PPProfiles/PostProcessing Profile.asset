@@ -84,8 +84,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   color:
-    overrideState: 0
-    value: {r: 0.17471364, g: 0.24528301, b: 0.17239231, a: 1}
+    overrideState: 1
+    value: {r: 0.1337397, g: 0.18723558, b: 0.1307677, a: 1}
   fastMode:
     overrideState: 1
     value: 1
@@ -215,7 +215,7 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: 5
+    value: -28
   tint:
     overrideState: 1
     value: 0
@@ -233,7 +233,7 @@ MonoBehaviour:
     value: 0
   postExposure:
     overrideState: 1
-    value: 1.1
+    value: 0.38
   contrast:
     overrideState: 1
     value: 1.05
@@ -1593,7 +1593,7 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 3.33
+    value: 0.44
   color:
     overrideState: 1
     value: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
@@ -1617,7 +1617,7 @@ MonoBehaviour:
     value: 0
   radius:
     overrideState: 1
-    value: 0.1
+    value: 0.49
   quality:
     overrideState: 1
     value: 3
