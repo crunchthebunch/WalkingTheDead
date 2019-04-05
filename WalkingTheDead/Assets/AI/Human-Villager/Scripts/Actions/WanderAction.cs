@@ -12,6 +12,6 @@ public class WanderAction : Action
 
     private void Wander(StateController controller)
     {
-        controller.Owner.Wander();
+        controller.Owner.WanderBehaviour.Wander();
     }
 }

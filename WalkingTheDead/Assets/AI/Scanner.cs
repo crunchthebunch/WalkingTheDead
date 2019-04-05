@@ -7,7 +7,7 @@ public class Scanner : MonoBehaviour
     List<GameObject> objectsInRange = new List<GameObject>();
     string tagToScanFor = "";
     SphereCollider scanArea;
-    [SerializeField] float scanSize;
+    [SerializeField] float scanSize = 5.0f;
 
     public void SetupScanner(string tagToScanFor, float radius)
     {
@@ -18,7 +18,9 @@ public class Scanner : MonoBehaviour
 
     private void Awake()
     {
-        scanArea = GetComponent<SphereCollider>();
+        scanArea = gameObject.AddComponent<SphereCollider>();
+        scanArea.isTrigger = true;
+
     }
 
     public List<GameObject> ObjectsInRange { get => objectsInRange; }

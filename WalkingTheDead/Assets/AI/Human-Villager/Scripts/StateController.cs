@@ -8,55 +8,28 @@ public class StateController : MonoBehaviour
     // [SerializeField] HumanStats stats;
     [SerializeField] State currentState;
     [SerializeField] State remainState;
-    [SerializeField] HumanSettings stats;
 
+    HumanSettings stats;
     Villager owner;
-    bool aiActive;
-    NavMeshAgent agent;
-    Vector3 closestZombieLocation;
 
-    public NavMeshAgent Agent { get => agent; }
     public Villager Owner { get => owner; }
     public HumanSettings Stats { get => stats; }
-    public Vector3 ClosestZombieLocation { get => closestZombieLocation; set => closestZombieLocation = value; }
 
     // Start is called before the first frame update
     void Awake()
     {
         owner = GetComponent<Villager>();
-        agent = GetComponent<NavMeshAgent>();
-
         stats = owner.Stats;
-    }
-
-    public void SetupAI(bool isActiveFromHuman)
-    {
-        // See whether the human is active --> Only do this if it is
-        aiActive = isActiveFromHuman;
-
-        // Enable / Disable navmesh agent based on active
-        if (aiActive)
-        {
-            agent.enabled = true;
-        }
-        else
-        {
-            agent.enabled = false;
-        }
     }
 
     private void Start()
     {
-        SetupAI(owner.enabled); // Move to objects
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!aiActive)
-            return;
-
-        
         // If Ai active update it's state
         currentState.UpdateState(this);
     }
@@ -64,7 +37,12 @@ public class StateController : MonoBehaviour
     // Only for testing
     public void Test()
     {
-        print("Happening.");
+        print("Enemies Around.");
+    }
+
+    public void TestOpposite()
+    {
+        print("No Enemies Around.");
     }
 
     public void TransitionToState(State nextState)

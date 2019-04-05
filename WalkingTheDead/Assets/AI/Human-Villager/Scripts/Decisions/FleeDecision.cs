@@ -15,9 +15,10 @@ public class FleeDecision : Decision
         // Check whether any zombies are in range
         if (controller.Owner.ZombieScanner.ObjectsInRange.Count > 0)
         {
+            controller.Test();
             return true;
         }
-            
+        controller.TestOpposite();
         return false;
     }
 }

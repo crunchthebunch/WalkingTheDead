@@ -9,6 +9,7 @@ public class HumanSettings : ScriptableObject
     [SerializeField] float walkRadius = 10f;
     [SerializeField] float wanderDelay = 2.0f;
     [SerializeField] float fleeSpeed = 5.0f;
+    [SerializeField] float fleeDistance = 10.0f;
     [SerializeField] float vision = 5f;
 
     public float MovementSpeed { get => movementSpeed; }
@@ -16,4 +17,5 @@ public class HumanSettings : ScriptableObject
     public float WanderDelay { get => wanderDelay; }
     public float FleeSpeed { get => fleeSpeed; }
     public float Vision { get => vision;  }
+    public float FleeDistance { get => fleeDistance; }
 }
