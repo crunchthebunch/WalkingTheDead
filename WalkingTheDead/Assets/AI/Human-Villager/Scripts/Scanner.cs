@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scanner : MonoBehaviour
 {
-    List<GameObject> objectsInRange;
+    List<GameObject> objectsInRange = new List<GameObject>();
     string tagToScanFor = "";
     SphereCollider scanArea;
     [SerializeField] float scanSize;
@@ -18,7 +18,6 @@ public class Scanner : MonoBehaviour
 
     private void Awake()
     {
-        objectsInRange = new List<GameObject>();
         scanArea = GetComponent<SphereCollider>();
     }
 
