@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: faf7db05d259ffb47b2b158a2e462d2a, type: 3}
-  m_Name: Default
+  m_Name: New Color Palette
   m_EditorClassIdentifier: 
-  current: {r: 0.509434, g: 0.3671744, b: 0.25711998, a: 1}
+  current: {r: 1, g: 1, b: 1, a: 1}
   colors:
   - {r: 0, g: 0.122, b: 0.247, a: 1}
   - {r: 0, g: 0.455, b: 0.851, a: 1}
@@ -30,7 +30,3 @@ MonoBehaviour:
   - {r: 0.067, g: 0.067, b: 0.067, a: 1}
   - {r: 0.667, g: 0.667, b: 0.667, a: 1}
   - {r: 0.867, g: 0.867, b: 0.867, a: 1}
-  - {r: 0.509434, g: 0.3671744, b: 0.25711998, a: 1}
-  - {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
-  - {r: 0.509434, g: 0.3671744, b: 0.25711998, a: 1}
-  - {r: 0.7735849, g: 0.6524842, b: 0.5582948, a: 1}
