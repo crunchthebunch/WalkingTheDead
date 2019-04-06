@@ -32,13 +32,14 @@ public class ZombieScript : MonoBehaviour
     List<Collider> humansInRange = new List<Collider>();
     Collider closestHuman;
 
-    SphereCollider detectionRange;
+    // SphereCollider detectionRange; - Moved into the Scanner
+    Scanner humanScanner;
     CapsuleCollider attackRange;
 
     Camera mainCamera;
     FollowTarget target = FollowTarget.PLAYER;
 
-    Scanner humanScanner;
+    
 
 
 
@@ -47,7 +48,6 @@ public class ZombieScript : MonoBehaviour
         player = GameObject.Find("PlayerCharacter");
         anim = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        detectionRange = GetComponentInChildren<SphereCollider>();
         attackRange = GetComponent<CapsuleCollider>();
         mainCamera = GameObject.Find("PlayerCharacter/Camera").GetComponent<Camera>();
 
@@ -224,7 +224,6 @@ public class ZombieScript : MonoBehaviour
     {
         if (!Application.isPlaying) return;
         Gizmos.color = new Color(0, 0, 1, 0.1f);
-        Gizmos.DrawSphere(transform.position, detectionRange.radius);
         Gizmos.color = new Color(1, 0.8f, 0.016f, 0.1f);
         Gizmos.DrawSphere(desiredPosition, 2f);
         Gizmos.DrawSphere(desiredPosition, wanderRadius);
