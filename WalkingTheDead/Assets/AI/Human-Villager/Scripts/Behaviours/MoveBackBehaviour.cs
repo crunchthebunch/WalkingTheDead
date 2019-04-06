@@ -25,7 +25,7 @@ public class MoveBackVillagerBehaviour : Behaviour
     {
         // Go Back to origin
         agent.SetDestination(navigationCenter);
-        agent.speed = settings.MovementSpeed;
+        agent.speed = settings.WalkingSpeed;
         agent.isStopped = false;
     }
 

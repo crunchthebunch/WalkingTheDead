@@ -23,7 +23,7 @@ public class Villager : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = settings.MovementSpeed;
+        agent.speed = settings.WalkingSpeed;
 
         // Create Scanner
         zombieScanner = GetComponentInChildren<Scanner>();
