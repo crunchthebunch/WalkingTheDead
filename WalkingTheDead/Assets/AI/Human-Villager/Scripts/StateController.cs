@@ -6,44 +6,8 @@ using UnityEngine.AI;
 public class StateController : MonoBehaviour
 {
     // [SerializeField] HumanStats stats;
-    [SerializeField] State currentState;
-    [SerializeField] State remainState;
-
-    VillagerSettings stats;
-    Villager owner;
-
-    public Villager Owner { get => owner; }
-    public VillagerSettings Stats { get => stats; }
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        owner = GetComponent<Villager>();
-        stats = owner.Settings;
-    }
-
-    private void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // If Ai active update it's state
-        currentState.UpdateState(this);
-    }
-
-    // Only for testing
-    public void Test()
-    {
-        print("Enemies Around.");
-    }
-
-    public void TestOpposite()
-    {
-        print("No Enemies Around.");
-    }
+    [SerializeField] protected State currentState = null;
+    [SerializeField] protected State remainState = null;
 
     public void TransitionToState(State nextState)
     {

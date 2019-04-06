@@ -13,6 +13,9 @@ public class FleeAction : Action
 
     private void Flee(StateController controller)
     {
-        controller.Owner.FleeBehaviour.DoBehaviour();
+        // Access Villager State Controller functions
+        VillagerStateController villagerController = controller as VillagerStateController;
+
+        villagerController.Owner.FleeBehaviour.DoBehaviour();
     }
 }

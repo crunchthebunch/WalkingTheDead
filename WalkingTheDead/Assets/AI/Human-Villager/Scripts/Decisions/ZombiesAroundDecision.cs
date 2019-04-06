@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "HumanAI/Decision/Flee")]
-public class FleeDecision : Decision
+public class ZombiesAroundDecision : Decision
 {
     public override bool MakeDecision(StateController controller)
     {
@@ -12,8 +12,11 @@ public class FleeDecision : Decision
 
     private bool AreZombiesAround(StateController controller)
     {
+        // Access Villager State Controller functions
+        VillagerStateController villagerController = controller as VillagerStateController;
+
         // Check whether any zombies are in range
-        if (controller.Owner.ZombieScanner.ObjectsInRange.Count > 0)
+        if (villagerController.Owner.ZombieScanner.ObjectsInRange.Count > 0)
         {
             // controller.Test();
             return true;

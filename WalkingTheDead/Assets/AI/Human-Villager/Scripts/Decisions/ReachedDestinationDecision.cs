@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "HumanAI/Decision/MoveBack")]
-public class MoveBackDecision : Decision
+public class ReachedDestinationDecision : Decision
 {
     public override bool MakeDecision(StateController controller)
     {
@@ -12,14 +12,15 @@ public class MoveBackDecision : Decision
 
     private bool HasReachedDestination(StateController controller)
     {
+        // Access Villager State Controller functions
+        VillagerStateController villagerController = controller as VillagerStateController;
+
         // Check whether the object has arrived to it's original location
-        if (Vector3.Distance(controller.Owner.transform.position, controller.Owner.MoveBackBehaviour.NavigationCenter)
+        if (Vector3.Distance(villagerController.Owner.transform.position, villagerController.Owner.MoveBackBehaviour.NavigationCenter)
             < 1.0f)
         {
-            // controller.Test();
             return true;
         }
-        // controller.TestOpposite();
         return false;
     }
 }

@@ -12,6 +12,9 @@ public class MoveBackAction : Action
 
     private void MoveBackToNavigationCenter(StateController controller)
     {
-        controller.Owner.MoveBackBehaviour.DoBehaviour();
+        // Access Villager State Controller functions
+        VillagerStateController villagerController = controller as VillagerStateController;
+
+        villagerController.Owner.MoveBackBehaviour.DoBehaviour();
     }
 }

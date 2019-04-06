@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "HumanAI/State")]
 public class State : ScriptableObject
 {
-    [SerializeField] Action[] actions;
-    [SerializeField] Transition[] transitions;
+    [SerializeField] Action[] actions = null;
+    [SerializeField] Transition[] transitions = null;
     public Color sceneGizmoColor = Color.grey;
 
     public void UpdateState(StateController controller)

@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Scanner : MonoBehaviour
 {
-    List<GameObject> objectsInRange = new List<GameObject>();
-    string tagToScanFor = "";
-    SphereCollider scanArea;
+    // Modifyable
+    [SerializeField] string tagToScanFor = "";
     [SerializeField] float scanSize = 5.0f;
+    [SerializeField] Color triggeredColor = Color.yellow;
+    [SerializeField] Color standardColor = Color.green;
+
+    List<GameObject> objectsInRange = new List<GameObject>();
+    SphereCollider scanArea;
     Vector3 lastKnownObjectLocation;
+
 
     public Vector3 LastKnownObjectLocation { get => lastKnownObjectLocation; }
     public List<GameObject> ObjectsInRange { get => objectsInRange; }
@@ -17,13 +22,13 @@ public class Scanner : MonoBehaviour
     public void SetupScanner(string tagToScanFor, float radius)
     {
         this.tagToScanFor = tagToScanFor;
-        scanSize = radius;
-        scanArea.radius = scanSize;
+        scanArea.radius = radius;
     }
 
     private void Awake()
     {
         scanArea = gameObject.AddComponent<SphereCollider>();
+        scanArea.radius = scanSize;
         scanArea.isTrigger = true;
 
     }
@@ -67,6 +72,7 @@ public class Scanner : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+
         if (other.gameObject.CompareTag(tagToScanFor))
         {
             // Store it as the last known object

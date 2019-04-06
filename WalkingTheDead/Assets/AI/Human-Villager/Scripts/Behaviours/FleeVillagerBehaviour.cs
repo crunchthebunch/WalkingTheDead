@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FleeBehaviour : Behaviour
+public class FleeVillagerBehaviour : Behaviour
 {
     VillagerSettings settings;
     Villager owner;

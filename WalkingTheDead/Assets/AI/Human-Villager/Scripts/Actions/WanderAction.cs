@@ -12,6 +12,9 @@ public class WanderAction : Action
 
     private void Wander(StateController controller)
     {
-        controller.Owner.WanderBehaviour.DoBehaviour();
+        // Access Villager State Controller functions
+        VillagerStateController villagerController = controller as VillagerStateController;
+
+        villagerController.Owner.WanderBehaviour.DoBehaviour();
     }
 }

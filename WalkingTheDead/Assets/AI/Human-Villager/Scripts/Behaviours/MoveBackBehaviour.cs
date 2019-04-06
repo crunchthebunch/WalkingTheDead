@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MoveBackBehaviour : Behaviour
+public class MoveBackVillagerBehaviour : Behaviour
 {
     Villager owner;
     NavMeshAgent agent;

@@ -5,19 +5,20 @@ using UnityEngine.AI;
 
 public class Villager : MonoBehaviour
 {
-    [SerializeField] VillagerSettings settings;
+    [SerializeField] VillagerSettings settings = null;
     Scanner zombieScanner;
     NavMeshAgent agent;
-    WanderBehaviour wanderBehaviour;
-    FleeBehaviour fleeBehaviour;
-    MoveBackBehaviour moveBackBehaviour;
+    WanderVillagerBehaviour wanderBehaviour;
+    FleeVillagerBehaviour fleeBehaviour;
+    MoveBackVillagerBehaviour moveBackBehaviour;
+    VillagerStateController controller;
 
     public NavMeshAgent Agent { get => agent; }
     public VillagerSettings Settings { get => settings; }
     public Scanner ZombieScanner { get => zombieScanner; }
-    public WanderBehaviour WanderBehaviour { get => wanderBehaviour; }
-    public FleeBehaviour FleeBehaviour { get => fleeBehaviour; }
-    public MoveBackBehaviour MoveBackBehaviour { get => moveBackBehaviour; }
+    public WanderVillagerBehaviour WanderBehaviour { get => wanderBehaviour; }
+    public FleeVillagerBehaviour FleeBehaviour { get => fleeBehaviour; }
+    public MoveBackVillagerBehaviour MoveBackBehaviour { get => moveBackBehaviour; }
 
     private void Awake()
     {
@@ -28,21 +29,23 @@ public class Villager : MonoBehaviour
         zombieScanner = GetComponentInChildren<Scanner>();
 
         // Add Wander Component
-        wanderBehaviour = gameObject.AddComponent<WanderBehaviour>();
+        wanderBehaviour = gameObject.AddComponent<WanderVillagerBehaviour>();
         wanderBehaviour.SetupComponent(settings);
 
-        fleeBehaviour = gameObject.AddComponent<FleeBehaviour>();
+        // Add Flee Behaviour
+        fleeBehaviour = gameObject.AddComponent<FleeVillagerBehaviour>();
         fleeBehaviour.SetupComponent(settings);
 
-        moveBackBehaviour = gameObject.AddComponent<MoveBackBehaviour>();
+        // Add Moving Back Behaviour
+        moveBackBehaviour = gameObject.AddComponent<MoveBackVillagerBehaviour>();
         moveBackBehaviour.SetupComponent(settings);
-        
+
+        // Get the controller - TODO might want to add this component and set it up later on
+        controller = GetComponent<VillagerStateController>();
     }
 
     private void Start()
     {
         zombieScanner.SetupScanner("Zombie", settings.Vision);
     }
-
-
 }

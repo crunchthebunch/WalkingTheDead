@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WanderBehaviour : Behaviour
+public class WanderVillagerBehaviour : Behaviour
 {
     Villager owner;
     NavMeshAgent agent;
