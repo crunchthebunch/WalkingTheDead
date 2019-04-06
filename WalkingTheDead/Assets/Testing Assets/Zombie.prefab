@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dfa89e8c1343f54aaf34075c3f6a931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!195 &576043336961124488
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -160,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400048, guid: 7c22209bbfa3d6b409fbb009a23d834f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.785
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 400048, guid: 7c22209bbfa3d6b409fbb009a23d834f, type: 3}
       propertyPath: m_LocalPosition.z
