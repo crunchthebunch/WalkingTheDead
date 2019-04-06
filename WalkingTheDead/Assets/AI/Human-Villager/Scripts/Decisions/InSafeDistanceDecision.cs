@@ -18,7 +18,7 @@ public class InSafeDistanceDecision : Decision
         // Check whether we travelled enough
         if (Vector3.Distance(villagerController.Owner.transform.position, villagerController.Owner.ZombieScanner.LastKnownObjectLocation) 
             > villagerController.Stats.FleeDistance - 2.0f
-            && villagerController.Owner.ZombieScanner.ObjectsInRange.Count > 0)
+            && villagerController.Owner.ZombieScanner.ObjectsInRange.Count == 0)
         {
             return true;
         }
