@@ -52,6 +52,7 @@ public class Scanner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.CompareTag(tagToScanFor))
         {
             // Store it as the last known object

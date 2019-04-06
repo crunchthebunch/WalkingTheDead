@@ -40,12 +40,12 @@ public class ZombieScript : MonoBehaviour
 
 
 
-    private void Start()
+    private void Awake()
     {
         player = GameObject.Find("PlayerCharacter");
         anim = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        detectionRange = GetComponent<SphereCollider>();
+        detectionRange = GetComponentInChildren<SphereCollider>();
         attackRange = GetComponent<CapsuleCollider>();
         mainCamera = GameObject.Find("PlayerCharacter/Camera").GetComponent<Camera>();
     }

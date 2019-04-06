@@ -25,7 +25,7 @@ public class Villager : MonoBehaviour
         agent.speed = settings.MovementSpeed;
 
         // Create Scanner
-        zombieScanner = GetComponent<Scanner>();
+        zombieScanner = GetComponentInChildren<Scanner>();
 
         // Add Wander Component
         wanderBehaviour = gameObject.AddComponent<WanderBehaviour>();
