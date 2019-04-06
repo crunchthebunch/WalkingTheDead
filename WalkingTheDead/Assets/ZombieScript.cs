@@ -13,12 +13,14 @@ enum FollowTarget
 public class ZombieScript : MonoBehaviour
 {
 
+    public Animator anim;
+
     float wanderRadius = 5.0f;
     float wanderChance = 0.001f;
-    float wanderSpeed = 2;
+    float wanderSpeed = 1;
     bool wandering;
 
-    float moveSpeed = 10.0f;
+    float moveSpeed = 2.0f;
     
     Vector3 desiredPosition;
     Vector3 commandPosition;
@@ -41,6 +43,7 @@ public class ZombieScript : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("PlayerCharacter");
+        anim = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
         detectionRange = GetComponent<SphereCollider>();
         attackRange = GetComponent<CapsuleCollider>();
@@ -53,6 +56,15 @@ public class ZombieScript : MonoBehaviour
         SetDesiredPosition();
         SetWandering();
         Move();
+
+        if (agent.speed > 0)
+        {
+            anim.SetBool("isZombieWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isZombieWalking", false);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -88,7 +100,6 @@ public class ZombieScript : MonoBehaviour
 
     void SetDesiredPosition()
     {
-        
         if (target == FollowTarget.PLAYER)
         {
             if (player.transform.position != desiredPosition)
@@ -178,6 +189,7 @@ public class ZombieScript : MonoBehaviour
         {
             agent.speed = moveSpeed;
             agent.SetDestination(desiredPosition);
+            
         }
     }
     private void OnDrawGizmosSelected()
