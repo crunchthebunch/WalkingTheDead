@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cac67b056161eec40b3a03fa4b29315e, type: 3}
-  m_Name: Villager-Flee
+  m_Name: S_MoveBack_Villager
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: b07de6a06c660874fbd0bbb9cd768075, type: 2}
+  - {fileID: 11400000, guid: 6254f582c4697a249bb32c0c2eae5372, type: 2}
   transitions:
-  - decisionToMake: {fileID: 11400000, guid: c0abb152fb22dc743bd414a71ff935e1, type: 2}
-    stateIfTrue: {fileID: 11400000, guid: d629973284bc81441808dad7a4c9885d, type: 2}
+  - decisionToMake: {fileID: 11400000, guid: bb988433352ef7145aa64f2e57e7a0d4, type: 2}
+    stateIfTrue: {fileID: 11400000, guid: ee1d6fbc4d2d9674fa842e989d4edb95, type: 2}
     stateIfFalse: {fileID: 11400000, guid: d629973284bc81441808dad7a4c9885d, type: 2}
-  sceneGizmoColor: {r: 0.9245283, g: 0.8859245, b: 0.15263437, a: 1}
+  - decisionToMake: {fileID: 11400000, guid: c0abb152fb22dc743bd414a71ff935e1, type: 2}
+    stateIfTrue: {fileID: 11400000, guid: c46c6117a74843345bcc4206eb385834, type: 2}
+    stateIfFalse: {fileID: 11400000, guid: d629973284bc81441808dad7a4c9885d, type: 2}
+  sceneGizmoColor: {r: 0.2251691, g: 0.83058304, b: 0.8679245, a: 1}

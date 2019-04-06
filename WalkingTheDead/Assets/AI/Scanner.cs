@@ -8,6 +8,11 @@ public class Scanner : MonoBehaviour
     string tagToScanFor = "";
     SphereCollider scanArea;
     [SerializeField] float scanSize = 5.0f;
+    Vector3 lastKnownObjectLocation;
+
+    public Vector3 LastKnownObjectLocation { get => lastKnownObjectLocation; }
+    public List<GameObject> ObjectsInRange { get => objectsInRange; }
+    public string TagToScanFor { get => tagToScanFor; }
 
     public void SetupScanner(string tagToScanFor, float radius)
     {
@@ -23,9 +28,6 @@ public class Scanner : MonoBehaviour
 
     }
 
-    public List<GameObject> ObjectsInRange { get => objectsInRange; }
-    public string TagToScanFor { get => tagToScanFor; }
-
     public GameObject GetClosestTargetInRange()
     {
         // If there are no zombies in range, return nothing
@@ -40,6 +42,7 @@ public class Scanner : MonoBehaviour
             if (Vector3.Distance(zombie.transform.position, transform.position) < 
                 Vector3.Distance(closestObject.transform.position, transform.position))
             {
+                // Store it as the closest Zombie
                 closestObject = zombie;
             }
         }
@@ -51,6 +54,12 @@ public class Scanner : MonoBehaviour
     {
         if (other.gameObject.CompareTag(tagToScanFor))
         {
+            // Store it as the last known object
+            if (objectsInRange.Count == 0)
+            {
+                lastKnownObjectLocation = other.gameObject.transform.position;
+            }
+
             objectsInRange.Add(other.gameObject);
         }
     }
@@ -59,7 +68,15 @@ public class Scanner : MonoBehaviour
     {
         if (other.gameObject.CompareTag(tagToScanFor))
         {
+            // Store it as the last known object
+            if (objectsInRange.Count == 1)
+            {
+                lastKnownObjectLocation = other.gameObject.transform.position;
+            }
+                
             objectsInRange.Remove(other.gameObject);
+
+            
         }
     }
 

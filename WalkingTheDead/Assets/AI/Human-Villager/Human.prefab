@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0568dd059fca06b42ba8ad74ae9e7b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: d25683092428c5a448775b4b20968b39, type: 2}
+  stats: {fileID: 11400000, guid: 16911f77d1b528c4fb4bd737bb777bdb, type: 2}
 --- !u!114 &6451563518325606576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: {fileID: 11400000, guid: ee1d6fbc4d2d9674fa842e989d4edb95, type: 2}
   remainState: {fileID: 11400000, guid: d629973284bc81441808dad7a4c9885d, type: 2}
-  stats: {fileID: 11400000, guid: d25683092428c5a448775b4b20968b39, type: 2}
 --- !u!114 &1512663407
 MonoBehaviour:
   m_ObjectHideFlags: 0

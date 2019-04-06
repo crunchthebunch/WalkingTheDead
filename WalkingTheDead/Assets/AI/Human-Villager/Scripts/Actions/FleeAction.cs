@@ -13,6 +13,6 @@ public class FleeAction : Action
 
     private void Flee(StateController controller)
     {
-        controller.Owner.FleeBehaviour.Flee();
+        controller.Owner.FleeBehaviour.DoBehaviour();
     }
 }

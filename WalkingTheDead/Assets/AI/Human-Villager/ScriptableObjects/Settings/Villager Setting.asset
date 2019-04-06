@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac67b056161eec40b3a03fa4b29315e, type: 3}
-  m_Name: Villager-MoveBack
+  m_Script: {fileID: 11500000, guid: 87b833b09578a374fbdc8b02a3d26a16, type: 3}
+  m_Name: Villager Setting
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
-  sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  vision: 5
+  movementSpeed: 2
+  walkRadius: 10
+  wanderDelay: 2
+  fleeSpeed: 5
+  fleeDistance: 20

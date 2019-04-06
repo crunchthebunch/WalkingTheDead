@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WanderBehaviour : MonoBehaviour
+public class WanderBehaviour : Behaviour
 {
-    HumanSettings settings;
     Villager owner;
     NavMeshAgent agent;
-
+    VillagerSettings settings;
     bool isReadyToWander;
     Vector3 navigationCenter = Vector3.down;
 
@@ -22,14 +21,13 @@ public class WanderBehaviour : MonoBehaviour
         navigationCenter = transform.position;
         isReadyToWander = true;
     }
-    
-    // Customise the Wander Component by the settings you give to it
-    public void SetupComponent(HumanSettings settings)
+
+    public override void SetupComponent(AISettings settings)
     {
-        this.settings = settings;
+        this.settings = settings as VillagerSettings;
     }
 
-    public void Wander()
+    public override void DoBehaviour()
     {
         if (isReadyToWander)
         {

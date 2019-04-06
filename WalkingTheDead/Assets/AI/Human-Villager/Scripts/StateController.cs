@@ -9,17 +9,17 @@ public class StateController : MonoBehaviour
     [SerializeField] State currentState;
     [SerializeField] State remainState;
 
-    HumanSettings stats;
+    VillagerSettings stats;
     Villager owner;
 
     public Villager Owner { get => owner; }
-    public HumanSettings Stats { get => stats; }
+    public VillagerSettings Stats { get => stats; }
 
     // Start is called before the first frame update
     void Awake()
     {
         owner = GetComponent<Villager>();
-        stats = owner.Stats;
+        stats = owner.Settings;
     }
 
     private void Start()
