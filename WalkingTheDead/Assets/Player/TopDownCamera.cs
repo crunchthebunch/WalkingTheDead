@@ -9,7 +9,7 @@ public class TopDownCamera : MonoBehaviour
     public float height = 40.0f;
     public float distance = 40.0f;
     public float angle = 45.0f;
-    public float smoothing = 0.2f;
+    public float smoothing = 0.0f;
     public float scrollspeed = 15.0f;
     public float minScroll = 30.0f;
     public float maxScroll = 50.0f;
@@ -26,8 +26,6 @@ public class TopDownCamera : MonoBehaviour
     void LateUpdate()
     {
         HandleCamera();
-
-        
     }
 
     protected virtual void HandleCamera()
@@ -39,6 +37,7 @@ public class TopDownCamera : MonoBehaviour
 
         // World Position Vector
         Vector3 worldPosition = (Vector3.forward * -distance) + (Vector3.up * height);
+
         //Debug.DrawLine(target.position, worldPosition, Color.red);
 
         // Movement of camera
@@ -46,7 +45,9 @@ public class TopDownCamera : MonoBehaviour
         flatTargetPosition.y = 0.0f;
         Vector3 finalposition = flatTargetPosition + worldPosition;
 
-        transform.position = Vector3.SmoothDamp(transform.position, finalposition, ref refVelocity, smoothing);
+        //transform.position = Vector3.SmoothDamp(transform.position, finalposition, ref refVelocity, smoothing);
+        transform.position = finalposition;
+
         transform.LookAt(target.position);
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
