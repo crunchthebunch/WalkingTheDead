@@ -6,13 +6,13 @@ using UnityEngine;
 public class TopDownCamera : MonoBehaviour
 {
     public Transform target;
-    public float height = 40.0f;
-    public float distance = 40.0f;
+    public float height = 20.0f;
+    public float distance = 20.0f;
     public float angle = 45.0f;
     public float smoothing = 0.0f;
     public float scrollspeed = 15.0f;
-    public float minScroll = 30.0f;
-    public float maxScroll = 50.0f;
+    public float minScroll = 10.0f;
+    public float maxScroll = 25.0f;
 
     private Vector3 refVelocity;
 
