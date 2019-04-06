@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Zombie
+  - Human
   layers:
   - Default
   - TransparentFX
@@ -15,11 +16,12 @@ TagManager:
   - 
   - 
   - PostProcessing
+  - Obstacle
+  - Humans
+  - Zombies
   - 
   - 
   - Zombie
-  - 
-  - 
   - 
   - 
   - 
