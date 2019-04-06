@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Zombie
   - Human
   layers:
   - Default
@@ -20,6 +21,7 @@ TagManager:
   - Zombies
   - 
   - 
+  - Zombie
   - 
   - 
   - 
