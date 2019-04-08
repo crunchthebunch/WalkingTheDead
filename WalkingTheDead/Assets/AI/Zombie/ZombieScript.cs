@@ -32,27 +32,56 @@ public class ZombieScript : MonoBehaviour
     List<Collider> humansInRange = new List<Collider>();
     Collider closestHuman;
 
-    SphereCollider detectionRange;
+    // SphereCollider detectionRange; - Moved into the Scanner
+    Scanner humanScanner;
     CapsuleCollider attackRange;
 
     Camera mainCamera;
     FollowTarget target = FollowTarget.PLAYER;
 
+    
 
 
-    private void Start()
+
+    private void Awake()
     {
         player = GameObject.Find("PlayerCharacter");
         anim = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        detectionRange = GetComponent<SphereCollider>();
         attackRange = GetComponent<CapsuleCollider>();
         mainCamera = GameObject.Find("PlayerCharacter/Camera").GetComponent<Camera>();
+
+        // Get the Scanner
+        humanScanner = GetComponentInChildren<Scanner>();
+    }
+
+    private void Start()
+    {
+        humanScanner.SetupScanner("Human", 10f); // TODO change this based on the zombie setting
+    }
+
+    // TODO Make this into a decision (in the zombie state controller)
+    private void SearchForHumans()
+    {
+        // Check whether there are any humans in range
+        if (humanScanner.ObjectsInRange.Count > 0)
+        {
+            // If there are make them targets
+            closestHuman = humanScanner.GetClosestTargetInRange().GetComponent<CapsuleCollider>();
+            target = FollowTarget.HUMANS;
+            wandering = false;
+        }
+        else
+        {
+            if (commandPosition == Vector3.negativeInfinity) target = FollowTarget.PLAYER;
+            else target = FollowTarget.COMMAND;
+        }
     }
 
     private void Update()
     {
         ProcessInput();
+        SearchForHumans();
         SetDesiredPosition();
         SetWandering();
         Move();
@@ -68,7 +97,7 @@ public class ZombieScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Human")
+        if (other.gameObject.CompareTag("Human"))
         {
             humansInRange.Add(other);
             GetClosestHuman();
@@ -79,7 +108,7 @@ public class ZombieScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Human")
+        if (other.gameObject.CompareTag("Human"))
         {
             for (int i = 0; i < humansInRange.Count; i++)
             {
@@ -92,7 +121,6 @@ public class ZombieScript : MonoBehaviour
                         else target = FollowTarget.COMMAND;
                     }
                     break;
-                    
                 }
             }
         }
@@ -196,7 +224,6 @@ public class ZombieScript : MonoBehaviour
     {
         if (!Application.isPlaying) return;
         Gizmos.color = new Color(0, 0, 1, 0.1f);
-        Gizmos.DrawSphere(transform.position, detectionRange.radius);
         Gizmos.color = new Color(1, 0.8f, 0.016f, 0.1f);
         Gizmos.DrawSphere(desiredPosition, 2f);
         Gizmos.DrawSphere(desiredPosition, wanderRadius);
