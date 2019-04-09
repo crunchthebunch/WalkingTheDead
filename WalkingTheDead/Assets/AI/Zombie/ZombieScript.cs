@@ -20,6 +20,9 @@ public class ZombieScript : MonoBehaviour
     float wanderSpeed = 1;
     bool wandering;
 
+    bool particleEffectActive;
+    float particleEffectCounter;
+
     float moveSpeed = 2.0f;
     
     Vector3 desiredPosition;
@@ -39,9 +42,8 @@ public class ZombieScript : MonoBehaviour
     Camera mainCamera;
     FollowTarget target = FollowTarget.PLAYER;
 
-    
-
-
+    public ParticleSystem clickSystemEffect;
+    ParticleSystem tempParticleSystem;
 
     private void Awake()
     {
@@ -51,8 +53,11 @@ public class ZombieScript : MonoBehaviour
         attackRange = GetComponent<CapsuleCollider>();
         mainCamera = GameObject.Find("PlayerCharacter/Camera").GetComponent<Camera>();
 
+        particleEffectActive = false;
         // Get the Scanner
         humanScanner = GetComponentInChildren<Scanner>();
+        Instantiate(clickSystemEffect, Vector3.zero, Quaternion.identity);
+
     }
 
     private void Start()
@@ -86,7 +91,7 @@ public class ZombieScript : MonoBehaviour
         SetWandering();
         Move();
 
-        if (agent.speed > 0)
+        if (agent.speed == wanderSpeed || agent.speed == moveSpeed)
         {
             anim.SetBool("isZombieWalking", true);
         }
@@ -94,6 +99,7 @@ public class ZombieScript : MonoBehaviour
         {
             anim.SetBool("isZombieWalking", false);
         }
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -164,6 +170,7 @@ public class ZombieScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             wandering = false;
+
             GetCommandPosition();
             target = FollowTarget.COMMAND;
         }
@@ -179,11 +186,22 @@ public class ZombieScript : MonoBehaviour
     void GetCommandPosition()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
         RaycastHit hitInfo;
 
         if (Physics.Raycast(ray, out hitInfo))
         {
             commandPosition = hitInfo.point;
+
+            //if (particleEffectActive == false)
+            //{
+                clickSystemEffect.transform.position = hitInfo.point;
+                clickSystemEffect.Play();
+                var emission = clickSystemEffect.emission;
+                emission.enabled = true;
+                //particleEffectActive = true;
+            //}
+            
         }
         else commandPosition = Vector3.negativeInfinity;
     }
