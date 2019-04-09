@@ -12,6 +12,7 @@ public class Villager : MonoBehaviour
     FleeVillagerBehaviour fleeBehaviour;
     MoveBackVillagerBehaviour moveBackBehaviour;
     VillagerStateController controller;
+    Animator anim;
 
     public NavMeshAgent Agent { get => agent; }
     public VillagerSettings Settings { get => settings; }
@@ -24,6 +25,8 @@ public class Villager : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = settings.WalkingSpeed;
+
+        anim = GetComponentInChildren<Animator>();
 
         // Create Scanner
         zombieScanner = GetComponentInChildren<Scanner>();
@@ -47,5 +50,22 @@ public class Villager : MonoBehaviour
     private void Start()
     {
         zombieScanner.SetupScanner("Zombie", settings.Vision);
+    }
+
+    private void Update()
+    {
+        if (agent.speed == settings.FleeSpeed)
+        {
+            anim.SetBool("isRunning", true);
+        }
+        else if (agent.speed == settings.WalkingSpeed)
+        {
+            anim.SetBool("isWalking", true);
+        }
+        else if (agent.isStopped)
+        {
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isWalking", false);
+        }
     }
 }
