@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "HumanAI/Decision/Flee")]
+[CreateAssetMenu(menuName = "AI/Human/Decision/Flee")]
 public class ZombiesAroundDecision : Decision
 {
     public override bool MakeDecision(StateController controller)

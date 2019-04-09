@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class VillagerStateController : StateController
 {
-    VillagerSettings stats = null;
+    VillagerSettings settings = null;
     Villager owner = null;
 
     public Villager Owner { get => owner; }
-    public VillagerSettings Stats { get => stats; }
+    public VillagerSettings Settings { get => settings; }
 
     private void Awake()
     {
         owner = GetComponent<Villager>();
-        stats = owner.Settings;
+        settings = owner.Settings;
     }
 
     // Update is called once per frame

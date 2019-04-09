@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "HumanAI/State")]
+[CreateAssetMenu(menuName = "AI/State")]
 public class State : ScriptableObject
 {
     [SerializeField] Action[] actions = null;

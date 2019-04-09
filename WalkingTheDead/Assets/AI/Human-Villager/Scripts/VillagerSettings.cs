@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "HumanAI/Settings/Villager")]
+[CreateAssetMenu(menuName = "AI/Settings/Villager")]
 public class VillagerSettings : AISettings
 {
     [SerializeField] float walkRadius = 10f;
