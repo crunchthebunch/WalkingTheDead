@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 125.9, y: 49.3}
+  m_AnchoredPosition: {x: 125.900024, y: 49.30005}
   m_SizeDelta: {x: 200, y: 48.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &541479099478024873
@@ -640,8 +640,11 @@ MonoBehaviour:
   baseHungerIncrement: 0.05
   maxHealth: 100
   maxHunger: 100
+  numberOFZombies: 0
   healthBar: {fileID: 541479099478024873}
   hungerBar: {fileID: 7254007389747439771}
+  clickSystemEffect: {fileID: 8442766173872107462, guid: 49f754db767780344bb622e670571389,
+    type: 3}
 --- !u!1 &4755730757067514836
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1668, y: 49.3}
+  m_AnchoredPosition: {x: 1668, y: 49.30005}
   m_SizeDelta: {x: 200, y: 48.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7254007389747439771

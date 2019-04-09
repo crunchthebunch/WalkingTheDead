@@ -20,8 +20,7 @@ public class ZombieScript : MonoBehaviour
     float wanderSpeed = 1;
     bool wandering;
 
-    bool particleEffectActive;
-    float particleEffectCounter;
+    
 
     float moveSpeed = 2.0f;
     
@@ -42,8 +41,7 @@ public class ZombieScript : MonoBehaviour
     Camera mainCamera;
     FollowTarget target = FollowTarget.PLAYER;
 
-    public ParticleSystem clickSystemEffect;
-    ParticleSystem tempParticleSystem;
+    
 
     private void Awake()
     {
@@ -53,10 +51,10 @@ public class ZombieScript : MonoBehaviour
         attackRange = GetComponent<CapsuleCollider>();
         mainCamera = GameObject.Find("PlayerCharacter/Camera").GetComponent<Camera>();
 
-        particleEffectActive = false;
+        
         // Get the Scanner
         humanScanner = GetComponentInChildren<Scanner>();
-        Instantiate(clickSystemEffect, Vector3.zero, Quaternion.identity);
+       
 
     }
 
@@ -195,10 +193,10 @@ public class ZombieScript : MonoBehaviour
 
             //if (particleEffectActive == false)
             //{
-                clickSystemEffect.transform.position = hitInfo.point;
-                clickSystemEffect.Play();
-                var emission = clickSystemEffect.emission;
-                emission.enabled = true;
+                //clickSystemEffect.transform.position = hitInfo.point;
+                //clickSystemEffect.Play();
+                //var emission = clickSystemEffect.emission;
+                //emission.enabled = true;
                 //particleEffectActive = true;
             //}
             

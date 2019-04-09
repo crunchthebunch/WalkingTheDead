@@ -15,6 +15,15 @@ public class playerResources : MonoBehaviour
     public Slider healthBar;
     public Slider hungerBar;
 
+    bool particleEffectActive;
+    float particleEffectCounter;
+
+    ParticleSystem click;
+
+    public ParticleSystem clickSystemEffect;
+
+    Camera mainCamera;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,6 +34,11 @@ public class playerResources : MonoBehaviour
         healthBar.value = CalculateHealth();
         hungerBar.value = CalculateHunger();
         numberOFZombies = 3;
+        click = Instantiate(clickSystemEffect, Vector3.zero, Quaternion.Euler(90.0f, 0.0f, 0.0f));
+
+        particleEffectActive = false;
+        mainCamera = GameObject.Find("PlayerCharacter/Camera").GetComponent<Camera>();
+
     }
 
     // Update is called once per frame
@@ -35,6 +49,35 @@ public class playerResources : MonoBehaviour
         hungerBar.value = CalculateHunger();
 
         healthBar.value = CalculateHealth();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            PlayParticleEffect();
+        }
+    }
+
+    void PlayParticleEffect()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hitInfo;
+
+        if (Physics.Raycast(ray, out hitInfo))
+        {
+            if (hitInfo.collider.tag == "")
+            {
+
+            }
+            click.transform.position = hitInfo.point;
+            //clickSystemEffect.Play();
+            click.Play();
+            //Destroy(click, 1.1f);
+
+        }
+        else
+        {
+
+        }
     }
 
     float CalculateHealth()
