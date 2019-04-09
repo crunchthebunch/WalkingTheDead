@@ -10,6 +10,7 @@ public class FleeVillagerBehaviour : Behaviour
     NavMeshAgent agent;
     Scanner zombieScanner;
 
+
     private void Awake()
     {
         owner = GetComponent<Villager>();
@@ -28,6 +29,7 @@ public class FleeVillagerBehaviour : Behaviour
         // Keep Calculating New Flee routes until there are zombies around
         if (owner.ZombieScanner.ObjectsInRange.Count > 0)
         {
+
             StopCoroutine(FleeFromClosestEnemy());
             StartCoroutine(FleeFromClosestEnemy());
         }
