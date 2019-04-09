@@ -18,6 +18,8 @@ public class playerResources : MonoBehaviour
     bool particleEffectActive;
     float particleEffectCounter;
 
+    LayerMask groundLayerMask;
+
     ParticleSystem click;
 
     public ParticleSystem clickSystemEffect;
@@ -35,6 +37,8 @@ public class playerResources : MonoBehaviour
         hungerBar.value = CalculateHunger();
         numberOFZombies = 3;
         click = Instantiate(clickSystemEffect, Vector3.zero, Quaternion.Euler(90.0f, 0.0f, 0.0f));
+
+        groundLayerMask = LayerMask.GetMask("Ground");
 
         particleEffectActive = false;
         mainCamera = GameObject.Find("PlayerCharacter/Camera").GetComponent<Camera>();
@@ -62,16 +66,16 @@ public class playerResources : MonoBehaviour
 
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(ray, out hitInfo))
+        if (Physics.Raycast(ray, out hitInfo, 100.0f, groundLayerMask))
         {
-            if (hitInfo.collider.tag == "")
-            {
+            //if (hitInfo.collider.tag == "Ground")
+            //{
+                click.transform.position = hitInfo.point;
+                //clickSystemEffect.Play();
+                click.Play();
+                //Destroy(click, 1.1f);
+            //}
 
-            }
-            click.transform.position = hitInfo.point;
-            //clickSystemEffect.Play();
-            click.Play();
-            //Destroy(click, 1.1f);
 
         }
         else
