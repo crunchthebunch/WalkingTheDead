@@ -210,6 +210,7 @@ public class ZombieScript : MonoBehaviour
         {
             wanderPosition = desiredPosition + Random.insideUnitSphere * wanderRadius;
         }
+
         agent.SetDestination(wanderPosition);
     }
     void SetWandering()

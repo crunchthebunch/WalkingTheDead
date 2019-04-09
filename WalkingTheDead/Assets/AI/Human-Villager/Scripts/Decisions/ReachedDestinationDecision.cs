@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "HumanAI/Decision/MoveBack")]
+[CreateAssetMenu(menuName = "AI/Human/Decision/MoveBack")]
 public class ReachedDestinationDecision : Decision
 {
     public override bool MakeDecision(StateController controller)
