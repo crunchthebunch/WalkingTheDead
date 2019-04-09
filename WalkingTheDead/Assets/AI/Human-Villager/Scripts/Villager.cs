@@ -57,13 +57,19 @@ public class Villager : MonoBehaviour
 
     private void Update()
     {
-        if (agent.speed == settings.FleeSpeed)
+        UpdateAnimation();
+    }
+
+    private void UpdateAnimation()
+    {
+        if (agent.speed == settings.FleeSpeed && !agent.isStopped)
         {
             anim.SetBool("isRunning", true);
         }
-        else if (agent.speed == settings.WalkingSpeed)
+        else if (agent.speed == settings.WalkingSpeed && !agent.isStopped)
         {
             anim.SetBool("isWalking", true);
+            anim.SetBool("isRunning", false);
         }
         else if (agent.isStopped)
         {

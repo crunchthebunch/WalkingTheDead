@@ -41,7 +41,9 @@ public class WanderVillagerBehaviour : Behaviour
     {
         isReadyToWander = false;
         // Set a random destination for wandering
+        
         agent.SetDestination(GetRandomLocationInRadius());
+        
 
         // Reset the wander time when due
         StopCoroutine(WaitForNextWander());
@@ -58,11 +60,17 @@ public class WanderVillagerBehaviour : Behaviour
             yield return null;
         }
 
+
+
         // Wait for the wander delay to be reset
+        agent.isStopped = true;
         yield return new WaitForSeconds(settings.WanderDelay);
+
+        
 
         // Reset the time
         isReadyToWander = true;
+        agent.isStopped = false;
     }
 
     Vector3 GetRandomLocationInRadius()
