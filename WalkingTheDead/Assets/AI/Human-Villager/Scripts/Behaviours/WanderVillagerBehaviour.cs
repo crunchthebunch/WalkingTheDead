@@ -35,13 +35,13 @@ public class WanderVillagerBehaviour : Behaviour
             StartCoroutine(WanderAround());
         }
 
+        Debug.DrawLine(transform.position, agent.destination);
+
     }
 
     IEnumerator WanderAround()
     {
-        isReadyToWander = false;
         // Set a random destination for wandering
-        
         agent.SetDestination(GetRandomLocationInRadius());
         
 
@@ -54,12 +54,13 @@ public class WanderVillagerBehaviour : Behaviour
 
     IEnumerator WaitForNextWander()
     {
+        isReadyToWander = false;
+
         // Dont reset until the destination is reached
-        while (Vector3.Distance(transform.position, agent.destination) > 1.0f)
+        while (Vector3.Distance(transform.position, agent.destination) > 2f)
         {
             yield return null;
         }
-
 
 
         // Wait for the wander delay to be reset
@@ -75,13 +76,13 @@ public class WanderVillagerBehaviour : Behaviour
 
     Vector3 GetRandomLocationInRadius()
     {
-        // Get a random direction within radius of the navigation Field
-        Vector3 randomDirection = Random.insideUnitSphere * Random.Range(settings.WalkRadius / 4f, settings.WalkRadius);
+        // Get a random position to travel to
+        Vector3 randomDirection = Random.insideUnitSphere * Random.Range(settings.WalkRadius / 2f, settings.WalkRadius);
         randomDirection += navigationCenter;
 
         NavMeshHit hit;
 
-        Vector3 walkableTarget = Vector3.zero;
+        Vector3 walkableTarget = transform.position;
 
         // Check whether  there is anything where he can travel to
         if (NavMesh.SamplePosition(randomDirection, out hit, settings.WalkRadius, 1))
