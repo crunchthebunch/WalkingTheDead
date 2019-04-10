@@ -1736,11 +1736,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5991754975519847540, guid: aa55411c53492e044aa738c44a88ba5a,
         type: 3}
-      propertyPath: additionalPatrolpositions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5991754975519847540, guid: aa55411c53492e044aa738c44a88ba5a,
-        type: 3}
       propertyPath: additionalPatrolpositions.Array.data[0]
       value: 
       objectReference: {fileID: 1109256387}
