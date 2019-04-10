@@ -20,6 +20,8 @@ public class ZombieScript : MonoBehaviour
     float wanderSpeed = 1;
     bool wandering;
 
+    
+
     float moveSpeed = 2.0f;
     
     Vector3 desiredPosition;
@@ -41,8 +43,6 @@ public class ZombieScript : MonoBehaviour
 
     
 
-
-
     private void Awake()
     {
         player = GameObject.Find("PlayerCharacter");
@@ -51,8 +51,11 @@ public class ZombieScript : MonoBehaviour
         attackRange = GetComponent<CapsuleCollider>();
         mainCamera = GameObject.Find("PlayerCharacter/Camera").GetComponent<Camera>();
 
+        
         // Get the Scanner
         humanScanner = GetComponentInChildren<Scanner>();
+       
+
     }
 
     private void Start()
@@ -86,7 +89,7 @@ public class ZombieScript : MonoBehaviour
         SetWandering();
         Move();
 
-        if (agent.speed > 0)
+        if (agent.speed == wanderSpeed || agent.speed == moveSpeed)
         {
             anim.SetBool("isZombieWalking", true);
         }
@@ -94,6 +97,7 @@ public class ZombieScript : MonoBehaviour
         {
             anim.SetBool("isZombieWalking", false);
         }
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -164,6 +168,7 @@ public class ZombieScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             wandering = false;
+
             GetCommandPosition();
             target = FollowTarget.COMMAND;
         }
@@ -179,11 +184,22 @@ public class ZombieScript : MonoBehaviour
     void GetCommandPosition()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
         RaycastHit hitInfo;
 
         if (Physics.Raycast(ray, out hitInfo))
         {
             commandPosition = hitInfo.point;
+
+            //if (particleEffectActive == false)
+            //{
+                //clickSystemEffect.transform.position = hitInfo.point;
+                //clickSystemEffect.Play();
+                //var emission = clickSystemEffect.emission;
+                //emission.enabled = true;
+                //particleEffectActive = true;
+            //}
+            
         }
         else commandPosition = Vector3.negativeInfinity;
     }
@@ -194,6 +210,7 @@ public class ZombieScript : MonoBehaviour
         {
             wanderPosition = desiredPosition + Random.insideUnitSphere * wanderRadius;
         }
+
         agent.SetDestination(wanderPosition);
     }
     void SetWandering()

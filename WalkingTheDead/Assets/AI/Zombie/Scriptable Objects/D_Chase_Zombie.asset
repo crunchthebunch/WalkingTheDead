@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b833b09578a374fbdc8b02a3d26a16, type: 3}
-  m_Name: Villager Setting
+  m_Script: {fileID: 11500000, guid: f5da6d9c9bc85234bab617fe51e7050f, type: 3}
+  m_Name: D_Chase_Zombie
   m_EditorClassIdentifier: 
-  vision: 5
-  movementSpeed: 2
-  walkRadius: 10
-  wanderDelay: 2
-  fleeSpeed: 5
-  fleeDistance: 20
