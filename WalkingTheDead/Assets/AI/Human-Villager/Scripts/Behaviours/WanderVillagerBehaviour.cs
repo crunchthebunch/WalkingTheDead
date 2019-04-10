@@ -17,15 +17,12 @@ public class WanderVillagerBehaviour : Behaviour
     {
         owner = GetComponent<Villager>();
         agent = owner.Agent;
+        settings = owner.Settings;
 
         navigationCenter = transform.position;
         isReadyToWander = true;
     }
 
-    public override void SetupComponent(AISettings settings)
-    {
-        this.settings = settings as VillagerSettings;
-    }
 
     public override void DoBehaviour()
     {

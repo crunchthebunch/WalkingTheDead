@@ -8,9 +8,11 @@ public class Villager : MonoBehaviour
     [SerializeField] VillagerSettings settings = null;
     Scanner zombieScanner;
     NavMeshAgent agent;
+
     WanderVillagerBehaviour wanderBehaviour;
     FleeVillagerBehaviour fleeBehaviour;
     MoveBackVillagerBehaviour moveBackBehaviour;
+
     VillagerStateController controller;
     Animator anim;
 
@@ -33,15 +35,12 @@ public class Villager : MonoBehaviour
 
         // Add Wander Component
         wanderBehaviour = gameObject.AddComponent<WanderVillagerBehaviour>();
-        wanderBehaviour.SetupComponent(settings);
 
         // Add Flee Behaviour
         fleeBehaviour = gameObject.AddComponent<FleeVillagerBehaviour>();
-        fleeBehaviour.SetupComponent(settings);
 
         // Add Moving Back Behaviour
         moveBackBehaviour = gameObject.AddComponent<MoveBackVillagerBehaviour>();
-        moveBackBehaviour.SetupComponent(settings);
 
         // Get the controller - TODO might want to add this component and set it up later on
         controller = GetComponent<VillagerStateController>();

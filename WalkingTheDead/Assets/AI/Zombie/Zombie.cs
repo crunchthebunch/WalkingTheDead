@@ -26,11 +26,10 @@ public class Zombie : MonoBehaviour
         agent.speed = settings.WalkingSpeed;
 
         // Add Scanner
-        humanScanner = GetComponentInChildren<Scanner>();
+        humanScanner = transform.Find("HumanScanner").GetComponent<Scanner>();
 
         // Add Chase Behaviour
         chaseBehaviour = gameObject.AddComponent<ChaseZombieBehaviour>();
-        chaseBehaviour.SetupComponent(settings);
     }
 
     private void Start()
