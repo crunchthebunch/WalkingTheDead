@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerResources : MonoBehaviour
+public class PlayerResources : MonoBehaviour
 {
     public float playerHealth;
     public float hungerValue;
-    public float baseHungerIncrement;
+    public float baseHungerDecrement;
     public float maxHealth = 100.0f;
     public float maxHunger = 100.0f;
-    public float numberOFZombies;
+    public int numberOFZombies;
 
     public Slider healthBar;
     public Slider hungerBar;
@@ -30,8 +30,8 @@ public class playerResources : MonoBehaviour
     void Awake()
     {
         playerHealth = maxHealth;
-        hungerValue = 0.0f;
-        baseHungerIncrement = 0.0001f;
+        hungerValue = maxHunger;
+        baseHungerDecrement = -0.005f;
 
         healthBar.value = CalculateHealth();
         hungerBar.value = CalculateHunger();
@@ -48,7 +48,7 @@ public class playerResources : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hungerValue += baseHungerIncrement;
+        hungerValue += baseHungerDecrement;
 
         hungerBar.value = CalculateHunger();
 
@@ -58,6 +58,8 @@ public class playerResources : MonoBehaviour
         {
             PlayParticleEffect();
         }
+
+        print(numberOFZombies);
     }
 
     void PlayParticleEffect()

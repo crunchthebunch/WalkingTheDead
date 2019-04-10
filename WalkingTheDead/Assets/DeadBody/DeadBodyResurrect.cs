@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DeadBodyResurrect : MonoBehaviour
 {
+    PlayerResources gameManager;
+
     [SerializeField] GameObject zombieSpawn = null;
 
     // Start is called before the first frame update
     void Awake()
     {
-        
+        gameManager = FindObjectOfType<PlayerResources>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class DeadBodyResurrect : MonoBehaviour
             if (Input.GetKeyDown("e"))
             {
                 Instantiate(zombieSpawn, transform.position, transform.rotation);
+                gameManager.numberOFZombies += 1;
                 Destroy(gameObject);
             }
         }
