@@ -14,10 +14,10 @@ public class ChaseZombieDecision : Decision
     private bool AreHumansInRange(StateController controller)
     {
         // Access Villager State Controller functions
-        ZombieStateController villagerController = controller as ZombieStateController;
+        ZombieStateController zombieController = controller as ZombieStateController;
 
         // Check whether any zombies are in range
-        if (villagerController.Owner.HumanScanner.ObjectsInRange.Count > 0)
+        if (zombieController.Owner.HumanScanner.ObjectsInRange.Count > 0)
         {
             return true;
         }

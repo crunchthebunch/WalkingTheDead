@@ -29,7 +29,6 @@ public class ChaseZombieBehaviour : Behaviour
         // Keep Calculating New Flee routes until there are zombies around
         if (owner.HumanScanner.ObjectsInRange.Count > 0)
         {
-            print("Humans in Range");
             StopCoroutine(ChaseClosestHuman()); // See if this needs to be a Coroutine
             StartCoroutine(ChaseClosestHuman());
         }

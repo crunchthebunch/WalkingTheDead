@@ -188,6 +188,7 @@ public class ZombieScript : MonoBehaviour
         else commandPosition = Vector3.negativeInfinity;
     }
 
+    //Added
     void Wander()
     {
         if (wanderPosition == Vector3.negativeInfinity || Random.value < wanderChance)
@@ -197,6 +198,8 @@ public class ZombieScript : MonoBehaviour
 
         agent.SetDestination(wanderPosition);
     }
+
+    //Added
     void SetWandering()
     {
         if (Mathf.Abs(Vector3.Distance(transform.position, desiredPosition)) < wanderRadius && target != FollowTarget.HUMANS && wandering == false)
