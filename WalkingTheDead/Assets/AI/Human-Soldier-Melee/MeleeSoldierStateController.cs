@@ -11,6 +11,12 @@ public class MeleeSoldierStateController : StateController
     public MeleeSoldier Owner { get => owner; }
     public MeleeSoldierSettings Settings { get => settings; }
 
+    // Test Print
+    public void TestPrint(float distance)
+    {
+        print(distance);
+    }
+
     private void Awake()
     {
         owner = GetComponent<MeleeSoldier>();
