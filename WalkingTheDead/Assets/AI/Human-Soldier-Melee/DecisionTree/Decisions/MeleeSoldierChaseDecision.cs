@@ -14,7 +14,7 @@ public class MeleeSoldierChaseDecision : Decision
     private bool AreZombiesInRange(StateController controller)
     {
         MeleeSoldierStateController soldierController = controller as MeleeSoldierStateController;
-
+        
         // Last seen Zombie - TODO see if the amount of zombies have to be checked
         if (soldierController.Owner.ZombieScanner.ObjectsInRange.Count > 0)
         {
@@ -30,7 +30,7 @@ public class MeleeSoldierChaseDecision : Decision
                 // If one of the areas is close enough to his patrol Point
                 if (Vector3.Distance(patrolPoint, closestZombie) < chaseDistance)
                 {
-                    soldierController.TestPrint(Vector3.Distance(patrolPoint, closestZombie));
+                    // soldierController.TestPrint(Vector3.Distance(patrolPoint, closestZombie));
 
                     // Keep chasing
                     return true;
