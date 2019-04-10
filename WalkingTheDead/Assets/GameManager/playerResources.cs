@@ -59,7 +59,7 @@ public class PlayerResources : MonoBehaviour
             PlayParticleEffect();
         }
 
-        print(numberOFZombies);
+        //print(numberOFZombies);
     }
 
     void PlayParticleEffect()

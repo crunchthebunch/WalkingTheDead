@@ -6,12 +6,18 @@ public class DeadBodyResurrect : MonoBehaviour
 {
     PlayerResources gameManager;
 
+    Animator anim;
+
+    [SerializeField] GameObject playerObject = null;
+
     [SerializeField] GameObject zombieSpawn = null;
 
     // Start is called before the first frame update
     void Awake()
     {
         gameManager = FindObjectOfType<PlayerResources>();
+        playerObject = GameObject.Find("PlayerCharacter");
+        anim = playerObject.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -27,10 +33,24 @@ public class DeadBodyResurrect : MonoBehaviour
             print("PLAYER DETECTED");
             if (Input.GetKeyDown("e"))
             {
-                Instantiate(zombieSpawn, transform.position, transform.rotation);
-                gameManager.numberOFZombies += 1;
-                Destroy(gameObject);
+                anim.SetBool("isResurrecting", true);
+
+                Invoke("setAnimationFalse", 2.0f);
+                Invoke("InstantiateZombie", 2.5f);
+
             }
         }
+    }
+
+    private void setAnimationFalse()
+    {
+        anim.SetBool("isResurrecting", false);
+    }
+
+    private void InstantiateZombie()
+    {
+        Instantiate(zombieSpawn, transform.position, transform.rotation);
+        gameManager.numberOFZombies += 1;
+        Destroy(gameObject);
     }
 }
