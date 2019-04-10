@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2278864110251223398}
   - component: {fileID: 4172635563701925910}
   - component: {fileID: 355203326106480014}
-  - component: {fileID: 5000937938545861881}
+  - component: {fileID: 1937312643227737708}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -83,7 +83,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5178773074320471425}
   m_Enabled: 1
---- !u!114 &5000937938545861881
+--- !u!114 &1937312643227737708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,10 +99,10 @@ MonoBehaviour:
   height: 20
   distance: 20
   angle: 45
-  smoothing: 0.2
+  smoothing: 0
   scrollspeed: 15
   minScroll: 10
-  maxScroll: 25
+  maxScroll: 30
 --- !u!1 &9166500947553831116
 GameObject:
   m_ObjectHideFlags: 0
