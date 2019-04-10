@@ -8,11 +8,9 @@ public class Villager : MonoBehaviour
     [SerializeField] VillagerSettings settings = null;
     Scanner zombieScanner;
     NavMeshAgent agent;
-
     WanderVillagerBehaviour wanderBehaviour;
     FleeVillagerBehaviour fleeBehaviour;
     MoveBackVillagerBehaviour moveBackBehaviour;
-
     VillagerStateController controller;
     Animator anim;
 
@@ -25,7 +23,6 @@ public class Villager : MonoBehaviour
 
     private void Awake()
     {
-        // Setup Navmesh
         agent = GetComponent<NavMeshAgent>();
         agent.speed = settings.WalkingSpeed;
 
@@ -57,19 +54,13 @@ public class Villager : MonoBehaviour
 
     private void Update()
     {
-        UpdateAnimation();
-    }
-
-    private void UpdateAnimation()
-    {
-        if (agent.speed == settings.FleeSpeed && !agent.isStopped)
+        if (agent.speed == settings.FleeSpeed)
         {
             anim.SetBool("isRunning", true);
         }
-        else if (agent.speed == settings.WalkingSpeed && !agent.isStopped)
+        else if (agent.speed == settings.WalkingSpeed)
         {
             anim.SetBool("isWalking", true);
-            anim.SetBool("isRunning", false);
         }
         else if (agent.isStopped)
         {
