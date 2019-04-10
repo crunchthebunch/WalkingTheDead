@@ -62,7 +62,8 @@ public class Villager : MonoBehaviour
         {
             anim.SetBool("isWalking", true);
         }
-        else if (agent.isStopped)
+
+        if (agent.isStopped)
         {
             anim.SetBool("isRunning", false);
             anim.SetBool("isWalking", false);
