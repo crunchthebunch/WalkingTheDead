@@ -59,7 +59,16 @@ public class PlayerResources : MonoBehaviour
             PlayParticleEffect();
         }
 
-        //print(numberOFZombies);
+    }
+
+    public void DecreaseHungerLevel()
+    {
+        // Increase fed value
+        hungerValue += 2.0f;
+
+        // Keep hunger capped at max
+        if (hungerValue > maxHunger)
+            hungerValue = maxHunger;
     }
 
     void PlayParticleEffect()

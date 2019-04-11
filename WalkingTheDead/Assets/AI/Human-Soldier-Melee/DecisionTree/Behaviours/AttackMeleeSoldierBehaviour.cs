@@ -19,8 +19,8 @@ public class AttackMeleeSoldierBehaviour : Behaviour
     {
         if (owner.ZombieScanner.ObjectsInRange.Count > 0)
         {
-            StopCoroutine(AttackClosestZombie());
-            StartCoroutine(AttackClosestZombie());
+            StopCoroutine(AttackClosestEnemy());
+            StartCoroutine(AttackClosestEnemy());
         }
 
         if (!isReadyToAttack)
@@ -39,7 +39,7 @@ public class AttackMeleeSoldierBehaviour : Behaviour
         isReadyToAttack = true;
     }
 
-    IEnumerator AttackClosestZombie()
+    IEnumerator AttackClosestEnemy()
     {
         GameObject closestZombie = zombieScanner.GetClosestTargetInRange();
 
@@ -84,10 +84,35 @@ public class AttackMeleeSoldierBehaviour : Behaviour
         yield return null;
     }
 
-    private void KillEnemy(GameObject closestZombie)
+    private void KillEnemy(GameObject closestEnemy)
     {
-        print("Attacking");
-        Destroy(closestZombie); // TODO Remove destruction now
+        Zombie potentiallyZombie;
+
+        if (closestEnemy)
+        {
+            potentiallyZombie = closestEnemy.GetComponent<Zombie>();
+
+            // See if this is a zombie
+            if (potentiallyZombie)
+            {
+                Destroy(closestEnemy.gameObject); // TODO Remove destruction now
+                print("Killing zombie!");
+                owner.GameManager.numberOFZombies++;
+            }
+            // Else its a necromancer
+            else
+            {
+                PlayerMovement necroMancer = closestEnemy.GetComponent<PlayerMovement>();
+
+                if (necroMancer)
+                {
+                    print("Killing player!");
+                    owner.GameManager.playerHealth -= 10.0f;
+                }
+            }
+
+            
+        }
 
         // Play Attack Animation
         // If the sword attack hits --> Kill Zombie
@@ -95,5 +120,6 @@ public class AttackMeleeSoldierBehaviour : Behaviour
 
         StopCoroutine(WaitForNextAttack());
         StartCoroutine(WaitForNextAttack());
+
     }
 }

@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1450907657992680204}
   m_Layer: 0
   m_Name: PlayerCharacter
-  m_TagString: Player
+  m_TagString: Necromancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

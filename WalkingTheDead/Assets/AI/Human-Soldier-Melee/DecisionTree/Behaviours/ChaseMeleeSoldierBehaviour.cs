@@ -8,7 +8,7 @@ public class ChaseMeleeSoldierBehaviour : Behaviour
     MeleeSoldierSettings settings;
     MeleeSoldier owner;
     NavMeshAgent agent;
-    Scanner zombieScanner;
+    Scanner enemyScanner;
 
     public override void DoBehaviour()
     {
@@ -25,13 +25,13 @@ public class ChaseMeleeSoldierBehaviour : Behaviour
         owner = GetComponent<MeleeSoldier>();
         agent = owner.Agent;
         settings = owner.Settings;
-        zombieScanner = owner.ZombieScanner;
+        enemyScanner = owner.ZombieScanner;
     }
 
     IEnumerator ChaseClosestZombie()
     {
         // Find the closest Zombie
-        GameObject closestEnemy = zombieScanner.GetClosestTargetInRange();
+        GameObject closestEnemy = enemyScanner.GetClosestTargetInRange();
 
 
         // If there is a Zombie in range

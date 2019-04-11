@@ -10,6 +10,7 @@ public class MeleeSoldier : MonoBehaviour
 
     [SerializeField] GameObject [] deadBodies = null;
 
+    PlayerResources gameManager;
     NavMeshAgent agent;
     Scanner zombieScanner;
 
@@ -28,12 +29,14 @@ public class MeleeSoldier : MonoBehaviour
 
     public List<GameObject> AdditionalPatrolpositions { get => additionalPatrolpositions; }
     public Scanner ZombieScanner { get => zombieScanner; }
-    
+    public PlayerResources GameManager { get => gameManager; }
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = settings.WalkingSpeed;
+
+        gameManager = FindObjectOfType<PlayerResources>();
 
         // Add Scanner
         zombieScanner = transform.Find("ZombieScanner").GetComponent<Scanner>();
@@ -53,7 +56,9 @@ public class MeleeSoldier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Add 2 tags
         zombieScanner.SetupScanner("Zombie", settings.Vision);
+        zombieScanner.SetupScanner("Necromancer", settings.Vision);
     }
 
     public void Die()
@@ -64,6 +69,9 @@ public class MeleeSoldier : MonoBehaviour
         deadPosition.y = transform.position.y - transform.localScale.y;
 
         Instantiate(deadBodies[bodyIndex], deadPosition, transform.rotation);
+
+        // Simulate feeding
+        gameManager.DecreaseHungerLevel();
 
         // Kill yourself
         Destroy(gameObject);

@@ -10,6 +10,7 @@ public class Villager : MonoBehaviour
 
     Scanner zombieScanner;
     NavMeshAgent agent;
+    PlayerResources gameManager;
 
     WanderVillagerBehaviour wanderBehaviour;
     FleeVillagerBehaviour fleeBehaviour;
@@ -33,6 +34,7 @@ public class Villager : MonoBehaviour
         agent.speed = settings.WalkingSpeed;
 
         anim = GetComponentInChildren<Animator>();
+        gameManager = FindObjectOfType<PlayerResources>();
 
         // Create Scanner
         zombieScanner = GetComponentInChildren<Scanner>();
@@ -63,6 +65,9 @@ public class Villager : MonoBehaviour
         deadPosition.y = transform.position.y - transform.localScale.y;
 
         Instantiate(deadBodies[bodyIndex], deadPosition, transform.rotation);
+
+        // Simulate feeding
+        gameManager.DecreaseHungerLevel();
 
         // Kill yourself
         Destroy(gameObject);

@@ -5,7 +5,8 @@ using UnityEngine;
 public class Scanner : MonoBehaviour
 {
     // Modifyable
-    [SerializeField] string tagToScanFor = "";
+    // Multiple tag support
+    [SerializeField] List<string> tagsToScanFor = null;
     [SerializeField] float scanSize = 5.0f;
     [SerializeField] Color triggeredColor = Color.yellow;
     [SerializeField] Color standardColor = Color.green;
@@ -19,11 +20,11 @@ public class Scanner : MonoBehaviour
 
     public Vector3 LastKnownObjectLocation { get => lastKnownObjectLocation; }
     public List<GameObject> ObjectsInRange { get => objectsInRange; }
-    public string TagsToScanFor { get => tagToScanFor; }
 
     public void SetupScanner(string tagToScanFor, float radius)
     {
-        this.tagToScanFor = tagToScanFor;
+        // Add it to the existing string values
+        tagsToScanFor.Add(tagToScanFor);
 
         scanSize = radius;
         scanArea.radius = radius;
@@ -35,6 +36,8 @@ public class Scanner : MonoBehaviour
 
         scanArea.radius = scanSize;
         scanArea.isTrigger = true;
+
+        tagsToScanFor = new List<string>();
 
     }
 
@@ -89,32 +92,39 @@ public class Scanner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(tagToScanFor))
+        // Check for all tags
+        foreach (string tagToScanFor in tagsToScanFor)
         {
-            // Store it as the last known object
-            if (objectsInRange.Count == 0)
+            if (other.gameObject.CompareTag(tagToScanFor))
             {
-                lastKnownObjectLocation = other.gameObject.transform.position;
-            }
+                // Store it as the last known object
+                if (objectsInRange.Count == 0)
+                {
+                    lastKnownObjectLocation = other.gameObject.transform.position;
+                }
 
-            objectsInRange.Add(other.gameObject);
+                objectsInRange.Add(other.gameObject);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag(tagToScanFor))
+        // Check for all tags
+        foreach (string tagToScanFor in tagsToScanFor)
         {
-            // Store it as the last known object
-            if (objectsInRange.Count == 1)
+            if (other.gameObject.CompareTag(tagToScanFor))
             {
-                lastKnownObjectLocation = other.gameObject.transform.position;
-            }
-              
-            objectsInRange.Remove(other.gameObject);
+                // Store it as the last known object
+                if (objectsInRange.Count == 1)
+                {
+                    lastKnownObjectLocation = other.gameObject.transform.position;
+                }
 
-          
+                objectsInRange.Remove(other.gameObject);
+            }
         }
+        
     }
 
     private void OnDrawGizmos()
