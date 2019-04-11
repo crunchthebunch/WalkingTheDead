@@ -107,7 +107,7 @@ public class AttackMeleeSoldierBehaviour : Behaviour
                 if (necroMancer)
                 {
                     print("Killing player!");
-                    owner.GameManager.playerHealth -= 10.0f;
+                    owner.GameManager.DecreaseHealth();
                 }
             }
 
