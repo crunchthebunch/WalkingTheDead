@@ -8,6 +8,8 @@ public class MeleeSoldier : MonoBehaviour
     [SerializeField] MeleeSoldierSettings settings = null;
     [SerializeField] List<GameObject> additionalPatrolpositions = new List<GameObject>();
 
+    [SerializeField] GameObject [] deadBodies = null;
+
     NavMeshAgent agent;
     Scanner zombieScanner;
 
@@ -52,6 +54,19 @@ public class MeleeSoldier : MonoBehaviour
     void Start()
     {
         zombieScanner.SetupScanner("Zombie", settings.Vision);
+    }
+
+    public void Die()
+    {
+        // Spawn a random dead body
+        int bodyIndex = Random.Range(0, deadBodies.Length);
+        Vector3 deadPosition = transform.position;
+        deadPosition.y = transform.position.y - transform.localScale.y;
+
+        Instantiate(deadBodies[bodyIndex], deadPosition, transform.rotation);
+
+        // Kill yourself
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()

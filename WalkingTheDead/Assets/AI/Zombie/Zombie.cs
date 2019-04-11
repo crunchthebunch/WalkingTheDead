@@ -104,10 +104,28 @@ public class Zombie : MonoBehaviour
     {
         GameObject toKill = humanScanner.GetClosestTargetInRange();
 
-        if (toKill != null && Mathf.Abs(Vector3.Distance(transform.position, toKill.transform.position)) < Settings.AttackRange)
+        if (toKill != null && (Vector3.Distance(transform.position, toKill.transform.position)) < Settings.AttackRange)
         {
-            humanScanner.ObjectsInRange.Remove(toKill);
-            Destroy(toKill);
+            // humanScanner.ObjectsInRange.Remove(toKill);
+            MeleeSoldier potentiallySoldier = toKill.GetComponent<MeleeSoldier>();
+
+            if (potentiallySoldier)
+            {
+                potentiallySoldier.Die();
+            }
+            else
+            {
+                Villager villager = toKill.GetComponent<Villager>();
+
+                if (villager)
+                {
+                    villager.Die();
+                }
+            }
+
+            
+
+            // Destroy(toKill);
             toKill = null;
         }
     }
