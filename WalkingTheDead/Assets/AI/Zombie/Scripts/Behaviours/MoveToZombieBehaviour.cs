@@ -15,15 +15,13 @@ public class MoveToZombieBehaviour : Behaviour
         MoveTo();
     }
 
-    public override void SetupComponent(AISettings settings)
-    {
-        this.settings = settings as ZombieSettings;
-    }
+
 
     private void Awake()
     {
         owner = GetComponent<Zombie>();
         agent = owner.Agent;
+        settings = owner.Settings;
     }
     void MoveTo()
     {

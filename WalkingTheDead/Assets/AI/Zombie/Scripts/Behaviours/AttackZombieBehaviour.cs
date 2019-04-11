@@ -7,6 +7,7 @@ public class AttackZombieBehaviour : Behaviour
 {
     ZombieSettings settings;
     Zombie owner;
+    Scanner ownerScanner;
 
     NavMeshAgent agent;
 
@@ -15,26 +16,23 @@ public class AttackZombieBehaviour : Behaviour
         AttackClosestVillager();
     }
 
-    public override void SetupComponent(AISettings settings)
-    {
-        this.settings = settings as ZombieSettings;
-    }
     private void Awake()
     {
         owner = GetComponent<Zombie>();
         agent = owner.Agent;
+        settings = owner.Settings;
+        ownerScanner = owner.HumanScanner;
     }
 
     void AttackClosestVillager()
     {
-        owner.ToKill = owner.HumanScanner.GetClosestTargetInRange();
+        GameObject ToKill = owner.HumanScanner.GetClosestTargetInRange();
+        
 
-        if (owner.ToKill != null)
+        if (ToKill != null && Vector3.Distance(owner.transform.position, ToKill.transform.position) < settings.AttackRange/1.5f)
         {
-            owner.ToKill = owner.HumanScanner.GetClosestTargetInRange();
-            owner.HumanScanner.ObjectsInRange.Remove(owner.ToKill);
-            GameObject.Destroy(owner.ToKill);
-            owner.ToKill = null;
+            owner.Anim.SetTrigger("Attack");
+            agent.velocity = agent.velocity/2.0f;
         }
     }
 }

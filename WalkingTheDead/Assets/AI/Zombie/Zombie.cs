@@ -18,7 +18,6 @@ public class Zombie : MonoBehaviour
     bool commandGiven;
     bool followPlayer;
     GameObject player;
-    GameObject toKill;
 
     public ZombieSettings Settings { get => settings; }
     public Scanner HumanScanner { get => humanScanner; }
@@ -31,15 +30,15 @@ public class Zombie : MonoBehaviour
     public bool FollowPlayer { get => followPlayer; set => followPlayer = value; }
     public GameObject Player { get => player;}
     public AttackZombieBehaviour AttackBehaviour { get => attackBehaviour;}
-    public GameObject ToKill { get => toKill; set => toKill = value; }
+    public Animator Anim { get => anim; set => anim = value; }
 
     ZombieStateController controller;
     Animator anim;
-    
 
     // Start is called before the first frame update
     void Awake()
     {
+        anim = GetComponentInChildren<Animator>();
         player = GameObject.Find("PlayerCharacter");
         desiredPosition = transform.position;
         commandGiven = false;
@@ -53,19 +52,15 @@ public class Zombie : MonoBehaviour
 
         // Add Chase Behaviour
         chaseBehaviour = gameObject.AddComponent<ChaseZombieBehaviour>();
-        chaseBehaviour.SetupComponent(settings);
 
         // Add wander behaviour
         wanderBehaviour = gameObject.AddComponent<WanderZombieBehaviour>();
-        wanderBehaviour.SetupComponent(settings);
 
         //Add moveto Behaviour
         moveToBehaviour = gameObject.AddComponent<MoveToZombieBehaviour>();
-        moveToBehaviour.SetupComponent(settings);
 
         //Add Attack Behaviour
         attackBehaviour = gameObject.AddComponent<AttackZombieBehaviour>();
-        attackBehaviour.SetupComponent(settings);
     }
 
     private void Start()
@@ -78,6 +73,14 @@ public class Zombie : MonoBehaviour
     {
         if (followPlayer) desiredPosition = player.transform.position;
 
+        if (agent.velocity.x != 0 || agent.velocity.z != 0)
+        {
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
+        }
     }
 
     private void OnEnable()
@@ -96,5 +99,16 @@ public class Zombie : MonoBehaviour
         agent.SetDestination(desiredPosition);
         commandGiven = true;
         this.followPlayer = followPlayer;
+    }
+    void KillClosestHuman()
+    {
+        GameObject toKill = humanScanner.GetClosestTargetInRange();
+
+        if (toKill != null && Mathf.Abs(Vector3.Distance(transform.position, toKill.transform.position)) < Settings.AttackRange)
+        {
+            humanScanner.ObjectsInRange.Remove(toKill);
+            Destroy(toKill);
+            toKill = null;
+        }
     }
 }

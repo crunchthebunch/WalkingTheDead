@@ -15,7 +15,7 @@ public class ArrivedZombieDecision : Decision
         ZombieStateController zombieController = controller as ZombieStateController;
 
         if (Vector3.Distance(zombieController.Owner.transform.position, zombieController.Owner.DesiredPosition) < zombieController.Settings.WalkRadius)
-        { 
+        {
             return true;
         }
         return false;

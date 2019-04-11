@@ -18,6 +18,7 @@ public class WanderZombieBehaviour : Behaviour
             Vector3 wanderPosition = owner.DesiredPosition + Random.onUnitSphere * settings.WalkRadius;
             wanderPosition = owner.DesiredPosition + Random.onUnitSphere * settings.WalkRadius;
             agent.SetDestination(wanderPosition);
+            agent.speed = settings.WalkingSpeed;
             startedWandering = true;
         }
 
@@ -27,15 +28,11 @@ public class WanderZombieBehaviour : Behaviour
         }
     }
 
-    public override void SetupComponent(AISettings settings)
-    {
-        this.settings = settings as ZombieSettings;
-    }
-
     private void Awake()
     {
         owner = GetComponent<Zombie>();
         agent = owner.Agent;
+        settings = owner.Settings;
         startedWandering = false;
 
     }
