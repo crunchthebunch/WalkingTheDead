@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/Human/Actions/Wander")]
+[CreateAssetMenu(menuName = "AI/Human/Villager/Actions/Wander")]
 public class WanderAction : Action
 {
     public override void Act(StateController controller)
