@@ -53,10 +53,4 @@ public class ChaseMeleeSoldierBehaviour : Behaviour
         yield return null;
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawLine(transform.position, agent.destination);
-    //}
-
 }
