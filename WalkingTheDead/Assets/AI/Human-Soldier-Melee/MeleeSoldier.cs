@@ -18,6 +18,8 @@ public class MeleeSoldier : MonoBehaviour
 
     [SerializeField] GameObject [] deadBodies = null;
 
+    AudioSource soldierAudioSource;
+
     PlayerResources gameManager;
     NavMeshAgent agent;
     Scanner zombieScanner;
@@ -49,6 +51,8 @@ public class MeleeSoldier : MonoBehaviour
         agent.speed = settings.WalkingSpeed;
 
         gameManager = FindObjectOfType<PlayerResources>();
+
+        soldierAudioSource = GetComponent<AudioSource>();
 
         // Setup animations
         animator = GetComponentInChildren<Animator>();
@@ -91,6 +95,7 @@ public class MeleeSoldier : MonoBehaviour
         // Simulate feeding
         gameManager.DecreaseHungerLevel();
 
+        soldierAudioSource.Play();
         // Kill yourself
         Destroy(gameObject);
     }

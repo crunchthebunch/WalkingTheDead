@@ -12,7 +12,6 @@ enum FollowTarget
 
 public class ZombieScript : MonoBehaviour
 {
-
     public Animator anim;
 
     float wanderRadius = 5.0f;
@@ -50,7 +49,6 @@ public class ZombieScript : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         attackRange = GetComponent<CapsuleCollider>();
         mainCamera = GameObject.Find("PlayerCharacter/Camera").GetComponent<Camera>();
-
         
         // Get the Scanner
         humanScanner = GetComponentInChildren<Scanner>();
