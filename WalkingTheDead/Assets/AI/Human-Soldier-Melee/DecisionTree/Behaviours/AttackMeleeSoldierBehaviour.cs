@@ -11,17 +11,21 @@ public class AttackMeleeSoldierBehaviour : Behaviour
     NavMeshAgent agent;
     Scanner zombieScanner;
     float timeTillNextAttack;
+    bool isReadyToAttack;
+
+    public bool IsReadyToAttack { get => isReadyToAttack; }
 
     public override void DoBehaviour()
     {
-        if (timeTillNextAttack < 0.0f)
+        if (owner.ZombieScanner.ObjectsInRange.Count > 0)
         {
-            AttackClosestZombie();
-            timeTillNextAttack = settings.AttackDelay;
+            StopCoroutine(AttackClosestZombie());
+            StartCoroutine(AttackClosestZombie());
         }
-        else
+
+        if (!isReadyToAttack)
         {
-            timeTillNextAttack -= Time.deltaTime;
+            print("Can't attack");
         }
     }
 
@@ -32,23 +36,64 @@ public class AttackMeleeSoldierBehaviour : Behaviour
         settings = owner.Settings;
         zombieScanner = owner.ZombieScanner;
         timeTillNextAttack = 0.0f;
+        isReadyToAttack = true;
     }
 
-    void AttackClosestZombie()
+    IEnumerator AttackClosestZombie()
     {
         GameObject closestZombie = zombieScanner.GetClosestTargetInRange();
 
         // If there are any zombies in range
         if (closestZombie)
         {
+            Vector3 zombiePosition = closestZombie.transform.position;
+
             // If the closest Zombie is in range
-            if (Vector3.Distance(closestZombie.transform.position, transform.position) < settings.AttackDistance)
+            while (Vector3.Distance(zombiePosition, transform.position) > settings.AttackDistance)
             {
-                // Play Attack Animation
-                // If the sword attack hits --> Kill Zombie
-                // TODO Remove destruction now
-                Destroy(closestZombie);
+                yield return null;
             }
+
+            // Attack if ready to attack
+            if (isReadyToAttack)
+            {
+                 // Kill the zombie
+                 KillEnemy(closestZombie);
+            }
+
+            yield return null;
         }
+    }
+
+    IEnumerator WaitForNextAttack()
+    {
+        isReadyToAttack = false;
+        
+
+        // Dont reset until the destination is reached
+        while (timeTillNextAttack > 0.0f)
+        {
+            timeTillNextAttack -= Time.deltaTime;
+            yield return null;
+        }
+
+        // yield return new WaitForSeconds(settings.AttackDelay);
+        timeTillNextAttack = settings.AttackDelay;
+
+        isReadyToAttack = true;
+        yield return null;
+    }
+
+    private void KillEnemy(GameObject closestZombie)
+    {
+        print("Attacking");
+        Destroy(closestZombie); // TODO Remove destruction now
+
+        // Play Attack Animation
+        // If the sword attack hits --> Kill Zombie
+        // Start countback for delay --> Kill Enemy
+
+        StopCoroutine(WaitForNextAttack());
+        StartCoroutine(WaitForNextAttack());
     }
 }

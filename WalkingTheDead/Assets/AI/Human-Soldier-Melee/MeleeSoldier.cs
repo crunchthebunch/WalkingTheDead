@@ -44,6 +44,8 @@ public class MeleeSoldier : MonoBehaviour
 
         // Add attack behaviour
         attackBehaviour = gameObject.AddComponent<AttackMeleeSoldierBehaviour>();
+
+        
     }
 
     // Start is called before the first frame update

@@ -11,6 +11,8 @@ public class Scanner : MonoBehaviour
     [SerializeField] Color standardColor = Color.green;
 
     List<GameObject> objectsInRange = new List<GameObject>();
+    List<GameObject> invalidObjects = new List<GameObject>();
+
     SphereCollider scanArea;
     Vector3 lastKnownObjectLocation;
 
@@ -42,32 +44,47 @@ public class Scanner : MonoBehaviour
         if (objectsInRange.Count == 0)
             return null;
 
+        // Remove invalid objects from the range
+        RemoveInvalidObjects();
+
+        // If there are no zombies in range, return nothing
+        if (objectsInRange.Count == 0)
+            return null;
+
         GameObject closestObject = objectsInRange[0];
 
         // Find The closest zombie out of the zombies that are in range
-        foreach(GameObject objectsInRange in objectsInRange)
+        foreach (GameObject objectInRange in objectsInRange)
         {
-            // If the object no longer extist, remove  it from the list
-            if (!objectsInRange)
-            {
-                this.objectsInRange.Remove(objectsInRange);
-
-                // If we removed the last zombie, return null
-                if (this.objectsInRange.Count == 0)
-                    return null;
-
-                continue;
-            }
-
-            if (Vector3.Distance(objectsInRange.transform.position, transform.position) < 
+            if (Vector3.Distance(objectInRange.transform.position, transform.position) <
                 Vector3.Distance(closestObject.transform.position, transform.position))
             {
                 // Store it as the closest Zombie
-                closestObject = objectsInRange;
+                closestObject = objectInRange;
             }
         }
 
         return closestObject;
+    }
+
+    private void RemoveInvalidObjects()
+    {
+        // Find the objects that need to be deleted
+        foreach (GameObject objectInRange in objectsInRange)
+        {
+            if (!objectInRange)
+            {
+                invalidObjects.Add(objectInRange);
+            }
+        }
+
+        // Remove the invalid objects
+        foreach (GameObject invalidObject in invalidObjects)
+        {
+            objectsInRange.Remove(invalidObject);
+        }
+
+        invalidObjects.Clear();
     }
 
     private void OnTriggerEnter(Collider other)

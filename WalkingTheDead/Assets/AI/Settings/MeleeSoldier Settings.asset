@@ -17,3 +17,6 @@ MonoBehaviour:
   chaseSpeed: 4
   chaseDistance: 20
   patrolDelay: 5
+  patrolDistance: 5
+  attackDistance: 2
+  attackDelay: 2
