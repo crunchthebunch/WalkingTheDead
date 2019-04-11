@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Villager Setting
   m_EditorClassIdentifier: 
   vision: 5
-  movementSpeed: 2
+  walkingSpeed: 1
   walkRadius: 10
   wanderDelay: 2
-  fleeSpeed: 5
+  fleeSpeed: 3
   fleeDistance: 20

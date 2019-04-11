@@ -11,17 +11,12 @@ public class ChaseZombieBehaviour : Behaviour
     Scanner humanScanner;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         owner = GetComponent<Zombie>();
         agent = owner.Agent;
+        settings = owner.Settings;
         humanScanner = owner.HumanScanner;
-    }
-
-    // Customise the Wander Component by the settings you give to it
-    public override void SetupComponent(AISettings settings)
-    {
-        this.settings = settings as ZombieSettings;
     }
 
     public override void DoBehaviour()
@@ -38,7 +33,7 @@ public class ChaseZombieBehaviour : Behaviour
     {
         // Find the closest Human
         GameObject closestHuman = humanScanner.GetClosestTargetInRange();
-        
+
 
         // If there is a human in range
         if (closestHuman)
@@ -56,13 +51,7 @@ public class ChaseZombieBehaviour : Behaviour
                 agent.isStopped = false;
             }
         }
-
         yield return null;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

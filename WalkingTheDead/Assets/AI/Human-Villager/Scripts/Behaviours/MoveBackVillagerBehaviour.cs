@@ -19,6 +19,7 @@ public class MoveBackVillagerBehaviour : Behaviour
         owner = GetComponent<Villager>();
         agent = owner.Agent;
         navigationCenter = transform.position;
+        settings = owner.Settings;
     }
 
     public override void DoBehaviour()
@@ -27,11 +28,6 @@ public class MoveBackVillagerBehaviour : Behaviour
         agent.SetDestination(navigationCenter);
         agent.speed = settings.WalkingSpeed;
         agent.isStopped = false;
-    }
-
-    public override void SetupComponent(AISettings settings)
-    {
-        this.settings = settings as VillagerSettings;
     }
 
 }

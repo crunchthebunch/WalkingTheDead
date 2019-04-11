@@ -25,7 +25,6 @@ public class Villager : MonoBehaviour
 
     private void Awake()
     {
-        // Setup Navmesh
         agent = GetComponent<NavMeshAgent>();
         agent.speed = settings.WalkingSpeed;
 
@@ -36,15 +35,12 @@ public class Villager : MonoBehaviour
 
         // Add Wander Component
         wanderBehaviour = gameObject.AddComponent<WanderVillagerBehaviour>();
-        wanderBehaviour.SetupComponent(settings);
 
         // Add Flee Behaviour
         fleeBehaviour = gameObject.AddComponent<FleeVillagerBehaviour>();
-        fleeBehaviour.SetupComponent(settings);
 
         // Add Moving Back Behaviour
         moveBackBehaviour = gameObject.AddComponent<MoveBackVillagerBehaviour>();
-        moveBackBehaviour.SetupComponent(settings);
 
         // Get the controller - TODO might want to add this component and set it up later on
         controller = GetComponent<VillagerStateController>();
@@ -65,7 +61,8 @@ public class Villager : MonoBehaviour
         {
             anim.SetBool("isWalking", true);
         }
-        else if (agent.isStopped)
+
+        if (agent.isStopped)
         {
             anim.SetBool("isRunning", false);
             anim.SetBool("isWalking", false);

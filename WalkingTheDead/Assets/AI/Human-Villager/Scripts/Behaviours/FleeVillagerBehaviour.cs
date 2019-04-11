@@ -16,12 +16,7 @@ public class FleeVillagerBehaviour : Behaviour
         owner = GetComponent<Villager>();
         agent = owner.Agent;
         zombieScanner = owner.ZombieScanner;
-    }
-
-    // Customise the Wander Component by the settings you give to it
-    public override void SetupComponent(AISettings settings)
-    {
-        this.settings = settings as VillagerSettings;
+        settings = owner.Settings;
     }
 
     public override void DoBehaviour()

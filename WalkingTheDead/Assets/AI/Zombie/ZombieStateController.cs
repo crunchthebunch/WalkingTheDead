@@ -11,7 +11,7 @@ public class ZombieStateController : StateController
     public Zombie Owner { get => owner; }
     public ZombieSettings Settings { get => settings; }
 
-    // Zombie Settings
+    
 
     private void Awake()
     {
