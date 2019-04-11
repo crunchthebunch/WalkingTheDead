@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7028932876120839598}
   - component: {fileID: 7028932876117415310}
   - component: {fileID: 7028932876118415182}
+  - component: {fileID: 5783830338329994464}
+  - component: {fileID: 2449939794989398712}
   m_Layer: 0
   m_Name: gallows
   m_TagString: Untagged
@@ -77,3 +79,29 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &5783830338329994464
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028932876120410510}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 338.89447, y: 67.91625, z: 349.328}
+  m_Center: {x: 0, y: -29.742695, z: 0}
+--- !u!65 &2449939794989398712
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028932876120410510}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 44.091797, y: 426.00613, z: 349.328}
+  m_Center: {x: 110.11658, y: 149.30225, z: 0}
