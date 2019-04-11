@@ -10,7 +10,7 @@ public class MeleeSoldierSettings : AISettings
     [SerializeField] private float patrolDelay = 5.0f;
     [SerializeField] private float patrolDistance = 5.0f;
     [SerializeField] private float attackDistance = 2.0f;
-    [SerializeField] private float attackDelay = 2.0f;
+    [SerializeField] private float attackDelay = 1.0f;
 
     public float PatrolDelay { get => patrolDelay; }
     public float ChaseSpeed { get => chaseSpeed; }
