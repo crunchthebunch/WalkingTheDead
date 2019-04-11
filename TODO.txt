@@ -1,8 +1,5 @@
-Add number of zombies to the feedbar calculation
-Show number of zombies
 Feeding refills feedbar
 Make Feedbar outline red if under 30%
-Add UI elements
 Attack Player (when feedbar is below 20%)
 Add animation to soldier (call animation for attacking)
 Add sounds to game (screams, backgroundmusic, resurrection, zombie sounds)

@@ -18,6 +18,11 @@ public class LoadSceneOnClick : MonoBehaviour
         SceneManager.LoadScene("Level_1");
     }
 
+    public void Controls()
+    {
+        SceneManager.LoadScene("Controls");
+    }
+
     public void Quit()
     {
         //UnityEditor.EditorApplication.isPlaying = false;

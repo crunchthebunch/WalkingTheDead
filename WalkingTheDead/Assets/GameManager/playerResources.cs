@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerResources : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayerResources : MonoBehaviour
     bool particleEffectActive;
     float particleEffectCounter;
 
+    public TextMeshProUGUI numberOfZombiesUI;
+
     LayerMask groundLayerMask;
 
     ParticleSystem click;
@@ -31,7 +34,7 @@ public class PlayerResources : MonoBehaviour
     {
         playerHealth = maxHealth;
         hungerValue = maxHunger;
-        baseHungerDecrement = -0.005f;
+        baseHungerDecrement = -0.001f;
 
         healthBar.value = CalculateHealth();
         hungerBar.value = CalculateHunger();
@@ -48,7 +51,7 @@ public class PlayerResources : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hungerValue += baseHungerDecrement;
+        hungerValue += (baseHungerDecrement * numberOFZombies);
 
         hungerBar.value = CalculateHunger();
 
@@ -58,6 +61,8 @@ public class PlayerResources : MonoBehaviour
         {
             PlayParticleEffect();
         }
+
+        numberOfZombiesUI.text = numberOFZombies.ToString();
 
         //print(numberOFZombies);
     }
