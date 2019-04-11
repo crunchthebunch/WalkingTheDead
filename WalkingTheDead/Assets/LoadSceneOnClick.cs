@@ -23,9 +23,18 @@ public class LoadSceneOnClick : MonoBehaviour
         SceneManager.LoadScene("Controls");
     }
 
+    public void LoadLoseScreen()
+    {
+        SceneManager.LoadScene("LoseScreen");
+    }
+
+    public void LoadWinScreen()
+    {
+        SceneManager.LoadScene("WinScreen");
+    }
+
     public void Quit()
     {
-        //UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 }

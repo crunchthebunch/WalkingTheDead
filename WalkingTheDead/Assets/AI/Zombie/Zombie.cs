@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class Zombie : MonoBehaviour
 {
     [SerializeField] ZombieSettings settings = null;
+    [SerializeField] GameObject[] deadBodies = null;
+
     Scanner humanScanner;
     NavMeshAgent agent;
     ChaseZombieBehaviour chaseBehaviour;
@@ -18,6 +20,8 @@ public class Zombie : MonoBehaviour
     bool commandGiven;
     bool followPlayer;
     GameObject player;
+    PlayerResources gameManager;
+    
 
     public ZombieSettings Settings { get => settings; }
     public Scanner HumanScanner { get => humanScanner; }
@@ -42,6 +46,9 @@ public class Zombie : MonoBehaviour
         player = GameObject.Find("PlayerCharacter");
         desiredPosition = transform.position;
         commandGiven = false;
+
+        // Find Game Manager
+        gameManager = FindObjectOfType<PlayerResources>();
 
         // Setup Navmesh
         agent = GetComponent<NavMeshAgent>();
@@ -93,13 +100,29 @@ public class Zombie : MonoBehaviour
         PlayerCommand.Click -= RecieveCommand;
     }
 
-    void RecieveCommand(Vector3 position ,bool followPlayer)
+    public void Die()
+    {
+        // Spawn a random dead body - Currently has 1
+        int bodyIndex = Random.Range(0, deadBodies.Length);
+        Vector3 deadPosition = transform.position;
+        deadPosition.y = transform.position.y - transform.localScale.y;
+
+        Instantiate(deadBodies[bodyIndex], deadPosition, transform.rotation);
+
+        gameManager.numberOFZombies--;
+
+        // Kill yourself
+        Destroy(gameObject);
+    }
+
+    void RecieveCommand(Vector3 position, bool followPlayer)
     {
         desiredPosition = position;
         agent.SetDestination(desiredPosition);
         commandGiven = true;
         this.followPlayer = followPlayer;
     }
+
     void KillClosestHuman()
     {
         GameObject toKill = humanScanner.GetClosestTargetInRange();

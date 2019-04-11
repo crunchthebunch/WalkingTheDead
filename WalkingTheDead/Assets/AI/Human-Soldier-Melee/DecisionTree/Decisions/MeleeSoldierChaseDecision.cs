@@ -15,10 +15,12 @@ public class MeleeSoldierChaseDecision : Decision
     {
         MeleeSoldierStateController soldierController = controller as MeleeSoldierStateController;
         
-        // Last seen Zombie - TODO see if the amount of zombies have to be checked
+        // Last seen Zombie
         if (soldierController.Owner.ZombieScanner.ObjectsInRange.Count > 0)
         {
-            Vector3 closestZombie = soldierController.Owner.ZombieScanner.GetClosestTargetInRange().transform.position;
+            // Find the closest Enemy
+            GameObject closestEnemy = soldierController.Owner.ZombieScanner.GetClosestTargetInRange();
+            Vector3 closestEnemyLocation = closestEnemy.transform.position;
 
             // Distance for how long the  soldier can chase for
             float chaseDistance = soldierController.Owner.Settings.ChaseDistance;
@@ -28,17 +30,15 @@ public class MeleeSoldierChaseDecision : Decision
             {
                 
                 // If one of the areas is close enough to his patrol Point
-                if (Vector3.Distance(patrolPoint, closestZombie) < chaseDistance)
+                if (Vector3.Distance(patrolPoint, closestEnemyLocation) < chaseDistance)
                 {
-                    // soldierController.TestPrint(Vector3.Distance(patrolPoint, closestZombie));
-
                     // Keep chasing
                     return true;
                 }
             }
         }
 
-        // If all of them are out of range, keep chasing
+        // If all of them are out of range, go back
         return false;
     }
 }
