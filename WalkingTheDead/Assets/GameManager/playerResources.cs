@@ -38,7 +38,7 @@ public class PlayerResources : MonoBehaviour
 
         healthBar.value = CalculateHealth();
         hungerBar.value = CalculateHunger();
-        numberOFZombies = 3;
+        numberOFZombies = FindObjectsOfType<Zombie>().Length;
         click = Instantiate(clickSystemEffect, Vector3.zero, Quaternion.Euler(90.0f, 0.0f, 0.0f));
 
         groundLayerMask = LayerMask.GetMask("Ground");

@@ -15,7 +15,7 @@ public class MeleeSoldierChaseDecision : Decision
     {
         MeleeSoldierStateController soldierController = controller as MeleeSoldierStateController;
         
-        // Last seen Zombie - TODO see if the amount of zombies have to be checked
+        // Last seen Zombie
         if (soldierController.Owner.ZombieScanner.ObjectsInRange.Count > 0)
         {
             // Find the closest Enemy
@@ -38,7 +38,7 @@ public class MeleeSoldierChaseDecision : Decision
             }
         }
 
-        // If all of them are out of range, keep chasing
+        // If all of them are out of range, go back
         return false;
     }
 }

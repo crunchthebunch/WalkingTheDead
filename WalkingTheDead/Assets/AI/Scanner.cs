@@ -133,11 +133,11 @@ public class Scanner : MonoBehaviour
         // Make the sphere yellow when there are zombies around
         if (objectsInRange.Count > 0)
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = triggeredColor;
         }
         else
         {
-            Gizmos.color = Color.green;
+            Gizmos.color = standardColor;
         }
 
         Gizmos.DrawWireSphere(transform.position, scanSize);

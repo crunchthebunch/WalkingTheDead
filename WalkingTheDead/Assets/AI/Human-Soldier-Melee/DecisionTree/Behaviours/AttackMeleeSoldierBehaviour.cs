@@ -8,8 +8,11 @@ public class AttackMeleeSoldierBehaviour : Behaviour
 {
     MeleeSoldierSettings settings;
     MeleeSoldier owner;
+
     NavMeshAgent agent;
     Scanner zombieScanner;
+    Animator animator;
+
     float timeTillNextAttack;
     bool isReadyToAttack;
 
@@ -22,11 +25,6 @@ public class AttackMeleeSoldierBehaviour : Behaviour
             StopCoroutine(AttackClosestEnemy());
             StartCoroutine(AttackClosestEnemy());
         }
-
-        if (!isReadyToAttack)
-        {
-            print("Can't attack");
-        }
     }
 
     private void Awake()
@@ -35,6 +33,8 @@ public class AttackMeleeSoldierBehaviour : Behaviour
         agent = owner.Agent;
         settings = owner.Settings;
         zombieScanner = owner.ZombieScanner;
+        animator = owner.Animator;
+
         timeTillNextAttack = 0.0f;
         isReadyToAttack = true;
     }
@@ -57,8 +57,8 @@ public class AttackMeleeSoldierBehaviour : Behaviour
             // Attack if ready to attack
             if (isReadyToAttack)
             {
-                 // Kill the zombie
-                 KillEnemy(closestZombie);
+                // Kill the zombie
+                KillEnemy(closestZombie);
             }
 
             yield return null;
@@ -68,36 +68,26 @@ public class AttackMeleeSoldierBehaviour : Behaviour
     IEnumerator WaitForNextAttack()
     {
         isReadyToAttack = false;
-        
 
-        // Dont reset until the destination is reached
-        while (timeTillNextAttack > 0.0f)
-        {
-            timeTillNextAttack -= Time.deltaTime;
-            yield return null;
-        }
-
-        // yield return new WaitForSeconds(settings.AttackDelay);
-        timeTillNextAttack = settings.AttackDelay;
+        yield return new WaitForSeconds(settings.AttackDelay);
 
         isReadyToAttack = true;
-        yield return null;
     }
 
     private void KillEnemy(GameObject closestEnemy)
     {
-        Zombie potentiallyZombie;
-
+        // Zombie zombie;
+        
         if (closestEnemy)
         {
-            potentiallyZombie = closestEnemy.GetComponent<Zombie>();
+            Zombie zombie = closestEnemy.GetComponent<Zombie>();
 
             // See if this is a zombie
-            if (potentiallyZombie)
+            if (zombie)
             {
-                Destroy(closestEnemy.gameObject); // TODO Remove destruction now
-                print("Killing zombie!");
-                owner.GameManager.numberOFZombies++;
+                animator.SetTrigger(owner.AnimationIDs.attackID);
+                zombie.Die(); // TODO Add delayed animation trigger event
+                
             }
             // Else its a necromancer
             else
@@ -106,20 +96,14 @@ public class AttackMeleeSoldierBehaviour : Behaviour
 
                 if (necroMancer)
                 {
-                    print("Killing player!");
+                    animator.SetTrigger(owner.AnimationIDs.attackID); // TODO Add delayed animation trigger event
                     owner.GameManager.DecreaseHealth();
                 }
             }
 
-            
+            StopCoroutine(WaitForNextAttack());
+            StartCoroutine(WaitForNextAttack());
+
         }
-
-        // Play Attack Animation
-        // If the sword attack hits --> Kill Zombie
-        // Start countback for delay --> Kill Enemy
-
-        StopCoroutine(WaitForNextAttack());
-        StartCoroutine(WaitForNextAttack());
-
     }
 }

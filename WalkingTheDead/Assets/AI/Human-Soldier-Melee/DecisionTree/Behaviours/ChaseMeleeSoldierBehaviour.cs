@@ -9,6 +9,7 @@ public class ChaseMeleeSoldierBehaviour : Behaviour
     MeleeSoldier owner;
     NavMeshAgent agent;
     Scanner enemyScanner;
+    Animator animator;
 
     public override void DoBehaviour()
     {
@@ -26,6 +27,7 @@ public class ChaseMeleeSoldierBehaviour : Behaviour
         agent = owner.Agent;
         settings = owner.Settings;
         enemyScanner = owner.ZombieScanner;
+        animator = owner.Animator;
     }
 
     IEnumerator ChaseClosestZombie()
