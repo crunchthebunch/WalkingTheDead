@@ -11,15 +11,18 @@ public class PlayerMovement : MonoBehaviour
 
     Quaternion tempQuaternion = Quaternion.Euler(30.0f, 0.0f, 30.0f);
 
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
+
     }
 
     // Update is called once per frame
@@ -49,5 +52,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+
     }
+
+
+
+
 }
