@@ -54,4 +54,14 @@ public class MeleeSoldier : MonoBehaviour
         zombieScanner.SetupScanner("Zombie", settings.Vision);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+
+        Vector3 eyePosition = transform.position;
+        eyePosition.y = transform.position.y + transform.localScale.y / 2f;
+
+        Gizmos.DrawRay(eyePosition, transform.forward * settings.PatrolDistance);
+    }
+
 }

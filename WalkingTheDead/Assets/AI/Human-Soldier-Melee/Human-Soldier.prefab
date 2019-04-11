@@ -180,8 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: fa5fa91b0da50414fa2cd76e42057e63, type: 2}
-  additionalPatrolpositions:
-  - {fileID: 0}
+  additionalPatrolpositions: []
 --- !u!114 &1546054276
 MonoBehaviour:
   m_ObjectHideFlags: 0
