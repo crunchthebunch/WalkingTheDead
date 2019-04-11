@@ -43,8 +43,3 @@ MonoBehaviour:
     settings:
       rotationRange: {x: 0, y: 0}
       scaleRange: {x: 0, y: 0}
-  - gameObject: {fileID: 7201838804007751415, guid: 46b7528a6f2912a498af722dc2c988c3,
-      type: 3}
-    settings:
-      rotationRange: {x: 0, y: 0}
-      scaleRange: {x: 0, y: 0}
