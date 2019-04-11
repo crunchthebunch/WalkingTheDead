@@ -60,6 +60,8 @@ public class AttackMeleeSoldierBehaviour : Behaviour
             if (isReadyToAttack)
             {
                 // Kill the zombie
+                isReadyToAttack = false;
+                print("Attacking");
                 animationEvent.SetClosestEnemy(closestEnemy);
                 animator.SetTrigger("attack");
             }
@@ -83,37 +85,4 @@ public class AttackMeleeSoldierBehaviour : Behaviour
 
         isReadyToAttack = true;
     }
-
-    //private void KillEnemy(GameObject closestEnemy)
-    //{
-    //    // Zombie zombie;
-        
-    //    if (closestEnemy)
-    //    {
-    //        Zombie zombie = closestEnemy.GetComponent<Zombie>();
-
-    //        // See if this is a zombie
-    //        if (zombie)
-    //        {
-    //            animator.SetTrigger(owner.AnimationIDs.attackID);
-    //            zombie.Die(); // TODO Add delayed animation trigger event
-                
-    //        }
-    //        // Else its a necromancer
-    //        else
-    //        {
-    //            PlayerMovement necroMancer = closestEnemy.GetComponent<PlayerMovement>();
-
-    //            if (necroMancer)
-    //            {
-    //                animator.SetTrigger(owner.AnimationIDs.attackID); // TODO Add delayed animation trigger event
-    //                owner.GameManager.DecreaseHealth();
-    //            }
-    //        }
-
-    //        StopCoroutine(WaitForNextAttack());
-    //        StartCoroutine(WaitForNextAttack());
-
-    //    }
-    //}
 }

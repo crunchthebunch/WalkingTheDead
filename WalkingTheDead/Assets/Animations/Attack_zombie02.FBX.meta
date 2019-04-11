@@ -111,7 +111,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.6207792
-        functionName: KillClosestHuman
+        functionName: KillEnemy
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

@@ -16,8 +16,12 @@ public class HitAnimationEvent : MonoBehaviour
 
     private void Awake()
     {
-        attackBehaviour = GetComponentInParent<AttackMeleeSoldierBehaviour>();
         gameManager = FindObjectOfType<PlayerResources>();
+    }
+
+    private void Start()
+    {
+        attackBehaviour = GetComponentInParent<AttackMeleeSoldierBehaviour>();
     }
 
     public void KillEnemy()

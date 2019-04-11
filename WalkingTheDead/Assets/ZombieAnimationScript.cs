@@ -4,30 +4,54 @@ using UnityEngine;
 
 public class ZombieAnimationScript : MonoBehaviour
 {
-    Zombie parentScript;
-    Scanner parentScanner;
+    AttackZombieBehaviour attackBehaviour;
+    Scanner enemyScanner;
+    GameObject closestEnemy = null;
+    PlayerResources gameManager;
 
     private void Awake()
     {
-        parentScript = GetComponentInParent<Zombie>();
-        parentScanner = parentScript.HumanScanner;
+        enemyScanner = GetComponent<Scanner>();
+        gameManager = FindObjectOfType<PlayerResources>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        attackBehaviour = GetComponentInParent<AttackZombieBehaviour>();
     }
 
-    void KillClosestHuman()
+    public void SetClosestEnemy(GameObject closestEnemy)
     {
-        GameObject toKill = parentScanner.GetClosestTargetInRange();
+        this.closestEnemy = closestEnemy;
+    }
 
-        if (toKill != null && Mathf.Abs(Vector3.Distance(parentScript.transform.position, toKill.transform.position)) < parentScript.Settings.AttackRange)
+    public void KillEnemy()
+    {
+
+        if (closestEnemy)
         {
-            parentScanner.ObjectsInRange.Remove(toKill);
-            Destroy(toKill);
-            toKill = null;
+            MeleeSoldier zombie = closestEnemy.GetComponent<MeleeSoldier>();
+
+            // See if this is a zombie
+            if (zombie)
+            {
+                zombie.Die(); // TODO Add delayed animation trigger event
+            }
+            // Else its a necromancer
+            else
+            {
+                PlayerMovement necroMancer = closestEnemy.GetComponent<PlayerMovement>();
+
+                if (necroMancer)
+                {
+                    gameManager.DecreaseHealth();
+                }
+            }
         }
+
+        // Have attack cooldown - if its alive
+        if (attackBehaviour)
+            attackBehaviour.AttackCoolDown();
     }
+
 }
