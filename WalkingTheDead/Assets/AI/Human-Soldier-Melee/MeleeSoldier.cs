@@ -14,6 +14,7 @@ public class MeleeSoldier : MonoBehaviour
     // Behaviours
     PatrolMeleeSoldierBehaviour patrolBehaviour;
     ChaseMeleeSoldierBehaviour chaseBehaviour;
+    AttackMeleeSoldierBehaviour attackBehaviour;
 
     public MeleeSoldierSettings Settings { get => settings; }
     public NavMeshAgent Agent { get => agent; }
@@ -21,6 +22,7 @@ public class MeleeSoldier : MonoBehaviour
     // Behaviours
     public PatrolMeleeSoldierBehaviour PatrolBehaviour { get => patrolBehaviour; }
     public ChaseMeleeSoldierBehaviour ChaseBehaviour { get => chaseBehaviour; }
+    public AttackMeleeSoldierBehaviour AttackBehaviour { get => attackBehaviour; }
 
     public List<GameObject> AdditionalPatrolpositions { get => additionalPatrolpositions; }
     public Scanner ZombieScanner { get => zombieScanner; }
@@ -39,6 +41,11 @@ public class MeleeSoldier : MonoBehaviour
 
         // Add chase behaviour
         chaseBehaviour = gameObject.AddComponent<ChaseMeleeSoldierBehaviour>();
+
+        // Add attack behaviour
+        attackBehaviour = gameObject.AddComponent<AttackMeleeSoldierBehaviour>();
+
+        
     }
 
     // Start is called before the first frame update
