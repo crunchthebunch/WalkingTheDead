@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/Human/Decision/FledEnough")]
+[CreateAssetMenu(menuName = "AI/Human/Villager/Decision/FledEnough")]
 public class InSafeDistanceDecision : Decision
 {
     public override bool MakeDecision(StateController controller)

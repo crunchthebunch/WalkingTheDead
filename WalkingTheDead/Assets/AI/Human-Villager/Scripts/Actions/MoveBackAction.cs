@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/Human/Actions/MoveBack")]
+[CreateAssetMenu(menuName = "AI/Human/Villager/Actions/MoveBack")]
 public class MoveBackAction : Action
 {
     public override void Act(StateController controller)

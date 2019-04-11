@@ -5,7 +5,5 @@ using UnityEngine;
 
 public abstract class Behaviour : MonoBehaviour
 {
-    public abstract void SetupComponent(AISettings settings);
-
     public abstract void DoBehaviour();
 }

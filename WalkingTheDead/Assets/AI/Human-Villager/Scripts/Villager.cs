@@ -6,11 +6,17 @@ using UnityEngine.AI;
 public class Villager : MonoBehaviour
 {
     [SerializeField] VillagerSettings settings = null;
+    [SerializeField] GameObject[] deadBodies = null;
+
     Scanner zombieScanner;
     NavMeshAgent agent;
+
     WanderVillagerBehaviour wanderBehaviour;
     FleeVillagerBehaviour fleeBehaviour;
     MoveBackVillagerBehaviour moveBackBehaviour;
+
+    
+
     VillagerStateController controller;
     Animator anim;
 
@@ -33,15 +39,12 @@ public class Villager : MonoBehaviour
 
         // Add Wander Component
         wanderBehaviour = gameObject.AddComponent<WanderVillagerBehaviour>();
-        wanderBehaviour.SetupComponent(settings);
 
         // Add Flee Behaviour
         fleeBehaviour = gameObject.AddComponent<FleeVillagerBehaviour>();
-        fleeBehaviour.SetupComponent(settings);
 
         // Add Moving Back Behaviour
         moveBackBehaviour = gameObject.AddComponent<MoveBackVillagerBehaviour>();
-        moveBackBehaviour.SetupComponent(settings);
 
         // Get the controller - TODO might want to add this component and set it up later on
         controller = GetComponent<VillagerStateController>();
@@ -50,6 +53,19 @@ public class Villager : MonoBehaviour
     private void Start()
     {
         zombieScanner.SetupScanner("Zombie", settings.Vision);
+    }
+
+    public void Die()
+    {
+        // Spawn a random dead body
+        int bodyIndex = Random.Range(0, deadBodies.Length);
+        Vector3 deadPosition = transform.position;
+        deadPosition.y = transform.position.y - transform.localScale.y;
+
+        Instantiate(deadBodies[bodyIndex], deadPosition, transform.rotation);
+
+        // Kill yourself
+        Destroy(gameObject);
     }
 
     private void Update()
@@ -62,7 +78,8 @@ public class Villager : MonoBehaviour
         {
             anim.SetBool("isWalking", true);
         }
-        else if (agent.isStopped)
+
+        if (agent.isStopped)
         {
             anim.SetBool("isRunning", false);
             anim.SetBool("isWalking", false);

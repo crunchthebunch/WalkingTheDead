@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8795604149560108241}
   - component: {fileID: 2612711834611455674}
   - component: {fileID: 830273784311554839}
+  - component: {fileID: 5652911126008885862}
   m_Layer: 11
   m_Name: Zombie-Refactored
   m_TagString: Zombie
@@ -64,7 +65,7 @@ NavMeshAgent:
   m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 30
+  m_AngularSpeed: 50
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -116,6 +117,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &5652911126008885862
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2840382505304573919}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 7c22209bbfa3d6b409fbb009a23d834f, type: 3}
+  m_Controller: {fileID: 9100000, guid: 320b3b579b7335d498d61955c42d64e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2654095923776483707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460856484746255261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3707a731c6ad31a438d70d6fa562e2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3460856484746353997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181,6 +213,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 289c4c3867bd421449ba8b6a5dfea0fa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c22209bbfa3d6b409fbb009a23d834f, type: 3}
+--- !u!1 &3460856484746255261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100048, guid: 7c22209bbfa3d6b409fbb009a23d834f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3460856484746353997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3460856484746741757 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400048, guid: 7c22209bbfa3d6b409fbb009a23d834f,

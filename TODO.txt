@@ -1,0 +1,8 @@
+Feeding refills feedbar
+Make Feedbar outline red if under 30%
+Attack Player (when feedbar is below 20%)
+Add animation to soldier (call animation for attacking)
+Add sounds to game (screams, backgroundmusic, resurrection, zombie sounds)
+Call Win and Lose conditions (win if every person in town is destroyed
+Soldiers attack player
+Lose if health is 0
