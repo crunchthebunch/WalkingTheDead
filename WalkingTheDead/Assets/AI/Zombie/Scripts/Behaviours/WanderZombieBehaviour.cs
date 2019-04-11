@@ -41,5 +41,6 @@ public class WanderZombieBehaviour : Behaviour
     {
         Vector3 wanderPosition = owner.DesiredPosition + Random.insideUnitSphere * settings.WalkRadius;
         agent.SetDestination(wanderPosition);
+        agent.speed = settings.WalkingSpeed;
     }
 }

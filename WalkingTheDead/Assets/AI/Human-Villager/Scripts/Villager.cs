@@ -62,7 +62,7 @@ public class Villager : MonoBehaviour
         // Spawn a random dead body
         int bodyIndex = Random.Range(0, deadBodies.Length);
         Vector3 deadPosition = transform.position;
-        deadPosition.y = transform.position.y - transform.localScale.y;
+        deadPosition.y = transform.position.y - transform.lossyScale.y;
 
         Instantiate(deadBodies[bodyIndex], deadPosition, transform.rotation);
 
@@ -78,10 +78,12 @@ public class Villager : MonoBehaviour
         if (agent.speed == settings.FleeSpeed)
         {
             anim.SetBool("isRunning", true);
+            anim.SetBool("isWalking", false);
         }
         else if (agent.speed == settings.WalkingSpeed)
         {
             anim.SetBool("isWalking", true);
+            anim.SetBool("isRunning", false);
         }
 
         if (agent.isStopped)
