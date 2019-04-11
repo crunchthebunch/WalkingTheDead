@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/Human/Actions/Flee")]
+[CreateAssetMenu(menuName = "AI/Human/Villager/Actions/Flee")]
 public class FleeAction : Action
 {
     public override void Act(StateController controller)
