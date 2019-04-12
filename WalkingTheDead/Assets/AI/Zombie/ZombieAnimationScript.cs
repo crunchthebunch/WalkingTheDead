@@ -6,11 +6,11 @@ public class ZombieAnimationScript : MonoBehaviour
 {
     AttackZombieBehaviour attackBehaviour;
     GameObject closestEnemy = null;
-    PlayerResources gameManager;
+    GameManager gameManager;
 
     private void Awake()
     {
-        gameManager = FindObjectOfType<PlayerResources>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Start()

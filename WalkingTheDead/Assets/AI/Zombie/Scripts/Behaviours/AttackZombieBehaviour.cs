@@ -37,7 +37,7 @@ public class AttackZombieBehaviour : Behaviour
 
     IEnumerator AttackClosestEnemy()
     {
-        GameObject ToKill = owner.HumanScanner.GetClosestTargetInRange();
+        GameObject ToKill = ownerScanner.GetClosestTargetInRange();
 
         // If it exists
         if (ToKill)

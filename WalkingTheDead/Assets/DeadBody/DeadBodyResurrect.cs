@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeadBodyResurrect : MonoBehaviour
 {
-    PlayerResources gameManager;
+    GameManager gameManager;
 
     Animator anim;
 
@@ -12,10 +12,12 @@ public class DeadBodyResurrect : MonoBehaviour
 
     [SerializeField] GameObject zombieSpawn = null;
 
+    public ParticleSystem resurrectParticle;
+
     // Start is called before the first frame update
     void Awake()
     {
-        gameManager = FindObjectOfType<PlayerResources>();
+        gameManager = FindObjectOfType<GameManager>();
         playerObject = GameObject.Find("PlayerCharacter");
         anim = playerObject.GetComponentInChildren<Animator>();
     }

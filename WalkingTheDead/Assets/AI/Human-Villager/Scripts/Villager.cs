@@ -10,7 +10,7 @@ public class Villager : MonoBehaviour
 
     Scanner zombieScanner;
     NavMeshAgent agent;
-    PlayerResources gameManager;
+    GameManager gameManager;
 
     WanderVillagerBehaviour wanderBehaviour;
     FleeVillagerBehaviour fleeBehaviour;
@@ -34,7 +34,7 @@ public class Villager : MonoBehaviour
         agent.speed = settings.WalkingSpeed;
 
         anim = GetComponentInChildren<Animator>();
-        gameManager = FindObjectOfType<PlayerResources>();
+        gameManager = FindObjectOfType<GameManager>();
 
         // Create Scanner
         zombieScanner = GetComponentInChildren<Scanner>();
