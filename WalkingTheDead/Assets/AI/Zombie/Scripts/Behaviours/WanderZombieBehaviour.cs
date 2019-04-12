@@ -21,6 +21,10 @@ public class WanderZombieBehaviour : Behaviour
             agent.speed = settings.WalkingSpeed;
             startedWandering = true;
         }
+        else
+        {
+            agent.speed = settings.WalkingSpeed;
+        }
 
         if (Random.value < settings.WanderChance)
         {
