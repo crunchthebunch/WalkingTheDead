@@ -147,9 +147,12 @@ public class Zombie : MonoBehaviour
         // Spawn a random dead body - Currently has 1
         int bodyIndex = Random.Range(0, deadBodies.Length);
         Vector3 deadPosition = transform.position;
-        deadPosition.y = transform.position.y - transform.localScale.y;
+        // deadPosition.y = transform.position.y - transform.localScale.y;
 
-        Instantiate(deadBodies[bodyIndex], deadPosition, transform.rotation);
+        Vector3 rotation = transform.rotation.eulerAngles;
+        rotation.y = 90.0f;
+
+        Instantiate(deadBodies[bodyIndex], deadPosition, Quaternion.Euler(rotation));
 
         gameManager.numberOFZombies--;
 

@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2490266294307473744}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 72.097, y: -96.219, z: 4.5519}
   m_LocalScale: {x: 0.77372885, y: 0.77372885, z: 0.77372885}
   m_Children:
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 3995219220830899418}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1001 &1370458082005264044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -201,6 +201,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3929402388712095803}
     m_Modifications:
+    - target: {fileID: 3275530237014464729, guid: d1563d868f512eb48954f068f66c8bd2,
+        type: 3}
+      propertyPath: m_Name
+      value: arm_flesh
+      objectReference: {fileID: 0}
     - target: {fileID: 3275530237014426873, guid: d1563d868f512eb48954f068f66c8bd2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -266,11 +271,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.010000002
       objectReference: {fileID: 0}
-    - target: {fileID: 3275530237014464729, guid: d1563d868f512eb48954f068f66c8bd2,
-        type: 3}
-      propertyPath: m_Name
-      value: arm_flesh
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1563d868f512eb48954f068f66c8bd2, type: 3}
 --- !u!4 &8246190191946252115 stripped
@@ -286,6 +286,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3929402388712095803}
     m_Modifications:
+    - target: {fileID: 4980995017895410128, guid: 498da813b65b7b244ab95cef6804ca4b,
+        type: 3}
+      propertyPath: m_Name
+      value: foot_flesh
+      objectReference: {fileID: 0}
     - target: {fileID: 4980995017895241200, guid: 498da813b65b7b244ab95cef6804ca4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -350,11 +355,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.009999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 4980995017895410128, guid: 498da813b65b7b244ab95cef6804ca4b,
-        type: 3}
-      propertyPath: m_Name
-      value: foot_flesh
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 498da813b65b7b244ab95cef6804ca4b, type: 3}
