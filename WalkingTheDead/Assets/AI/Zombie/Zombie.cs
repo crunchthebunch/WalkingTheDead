@@ -85,12 +85,20 @@ public class Zombie : MonoBehaviour
     {
         if (followPlayer) desiredPosition = player.transform.position;
 
-        if (agent.velocity.x != 0 || agent.velocity.z != 0)
+        if (agent.speed == settings.ChaseSpeed)
         {
+            anim.SetBool("Charging", true);
             anim.SetBool("Walking", true);
         }
         else
         {
+            anim.SetBool("Charging", false);
+            anim.SetBool("Walking", true);
+        }
+
+        if (agent.velocity.magnitude < settings.WalkingSpeed / 2.0f)
+        {
+            anim.SetBool("Charging", false);
             anim.SetBool("Walking", false);
         }
     }
