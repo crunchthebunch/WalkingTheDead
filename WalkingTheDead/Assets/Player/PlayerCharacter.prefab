@@ -103,6 +103,53 @@ MonoBehaviour:
   scrollspeed: 15
   minScroll: 10
   maxScroll: 30
+--- !u!1 &8534865592809802877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1498883835302773683}
+  - component: {fileID: 6574315668463277178}
+  m_Layer: 0
+  m_Name: ControlZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1498883835302773683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534865592809802877}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8171068610250063899}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6574315668463277178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534865592809802877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636689377e65ef14f8e923d3f85bd995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagsToScanFor: []
+  scanSize: 20
+  triggeredColor: {r: 1, g: 0.015686274, b: 0.8761197, a: 1}
+  standardColor: {r: 0.64480245, g: 0.6603774, b: 0.64480245, a: 1}
 --- !u!1 &9166500947553831116
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,9 +162,11 @@ GameObject:
   - component: {fileID: 1442548260671248624}
   - component: {fileID: 4975565982040587211}
   - component: {fileID: 1450907657992680204}
+  - component: {fileID: 1578746872988374903}
+  - component: {fileID: 2738593820918051926}
   m_Layer: 0
   m_Name: PlayerCharacter
-  m_TagString: Player
+  m_TagString: Necromancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,6 +184,7 @@ Transform:
   m_Children:
   - {fileID: 2278864110251223398}
   - {fileID: 1117903230868347329}
+  - {fileID: 1498883835302773683}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -181,6 +231,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1578746872988374903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9166500947553831116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c421ea4009c714492839875f511c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!81 &2738593820918051926
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9166500947553831116}
+  m_Enabled: 1
 --- !u!1001 &1117903230868472687
 PrefabInstance:
   m_ObjectHideFlags: 0

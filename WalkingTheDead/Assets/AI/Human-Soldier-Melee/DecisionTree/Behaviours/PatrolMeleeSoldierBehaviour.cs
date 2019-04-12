@@ -11,6 +11,7 @@ public class PatrolMeleeSoldierBehaviour : Behaviour
     NavMeshAgent agent;
     bool isReadyToPatrol;
     public int nextPatrolPositionIndex;
+    Animator animator;
 
     List<Vector3> patrolPositions;
     List<GameObject> additionalPatrolpositions = null;
@@ -22,6 +23,8 @@ public class PatrolMeleeSoldierBehaviour : Behaviour
         owner = GetComponent<MeleeSoldier>();
         agent = owner.Agent;
         settings = owner.Settings;
+        animator = owner.Animator;
+
         isReadyToPatrol = true;
         patrolPositions = new List<Vector3>();
         nextPatrolPositionIndex = 0;
@@ -62,6 +65,7 @@ public class PatrolMeleeSoldierBehaviour : Behaviour
     {
         // Set a patrol destination
         agent.SetDestination(GetNextPatrolPosition());
+        agent.speed = settings.WalkingSpeed;
 
         // Reset the wander time when due
         StopCoroutine(WaitForNextPatrol());
@@ -81,6 +85,7 @@ public class PatrolMeleeSoldierBehaviour : Behaviour
         }
 
         agent.isStopped = true;
+        
         yield return new WaitForSeconds(settings.PatrolDelay);
 
         // Reset the time

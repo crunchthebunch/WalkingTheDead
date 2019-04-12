@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636689377e65ef14f8e923d3f85bd995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagToScanFor: 
+  tagsToScanFor: []
   scanSize: 5
   triggeredColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   standardColor: {r: 0, g: 1, b: 0, a: 1}
@@ -133,6 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 16911f77d1b528c4fb4bd737bb777bdb, type: 2}
+  deadBodies:
+  - {fileID: 3747224913986411883, guid: 56c2d0029b5addd41b63a71d0e7493be, type: 3}
 --- !u!54 &8248204616013323526
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -170,10 +172,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7546593151853995806}
     m_Modifications:
-    - target: {fileID: 100046, guid: 0730aa664ee887a46af94fcda74e1768, type: 3}
-      propertyPath: m_Name
-      value: Body v5
-      objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: 0730aa664ee887a46af94fcda74e1768, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -217,6 +215,10 @@ PrefabInstance:
     - target: {fileID: 400046, guid: 0730aa664ee887a46af94fcda74e1768, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100046, guid: 0730aa664ee887a46af94fcda74e1768, type: 3}
+      propertyPath: m_Name
+      value: Body v5
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 0730aa664ee887a46af94fcda74e1768, type: 3}
       propertyPath: m_Controller

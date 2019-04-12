@@ -8,8 +8,12 @@ public class AttackMeleeSoldierBehaviour : Behaviour
 {
     MeleeSoldierSettings settings;
     MeleeSoldier owner;
+
     NavMeshAgent agent;
     Scanner zombieScanner;
+    Animator animator;
+    HitAnimationEvent animationEvent;
+
     float timeTillNextAttack;
     bool isReadyToAttack;
 
@@ -19,13 +23,8 @@ public class AttackMeleeSoldierBehaviour : Behaviour
     {
         if (owner.ZombieScanner.ObjectsInRange.Count > 0)
         {
-            StopCoroutine(AttackClosestZombie());
-            StartCoroutine(AttackClosestZombie());
-        }
-
-        if (!isReadyToAttack)
-        {
-            print("Can't attack");
+            StopCoroutine(AttackClosestEnemy());
+            StartCoroutine(AttackClosestEnemy());
         }
     }
 
@@ -35,18 +34,21 @@ public class AttackMeleeSoldierBehaviour : Behaviour
         agent = owner.Agent;
         settings = owner.Settings;
         zombieScanner = owner.ZombieScanner;
+        animator = owner.Animator;
+        animationEvent = GetComponentInChildren<HitAnimationEvent>(); // Create this instead of finding it
+
         timeTillNextAttack = 0.0f;
         isReadyToAttack = true;
     }
 
-    IEnumerator AttackClosestZombie()
+    IEnumerator AttackClosestEnemy()
     {
-        GameObject closestZombie = zombieScanner.GetClosestTargetInRange();
+        GameObject closestEnemy = zombieScanner.GetClosestTargetInRange();
 
         // If there are any zombies in range
-        if (closestZombie)
+        if (closestEnemy)
         {
-            Vector3 zombiePosition = closestZombie.transform.position;
+            Vector3 zombiePosition = closestEnemy.transform.position;
 
             // If the closest Zombie is in range
             while (Vector3.Distance(zombiePosition, transform.position) > settings.AttackDistance)
@@ -57,43 +59,19 @@ public class AttackMeleeSoldierBehaviour : Behaviour
             // Attack if ready to attack
             if (isReadyToAttack)
             {
-                 // Kill the zombie
-                 KillEnemy(closestZombie);
+                // Kill the zombie
+                isReadyToAttack = false;
+                animationEvent.SetClosestEnemy(closestEnemy);
+                animator.SetTrigger("attack");
             }
 
             yield return null;
         }
     }
 
-    IEnumerator WaitForNextAttack()
+    // To call from event script
+    public void AttackCoolDown()
     {
-        isReadyToAttack = false;
-        
-
-        // Dont reset until the destination is reached
-        while (timeTillNextAttack > 0.0f)
-        {
-            timeTillNextAttack -= Time.deltaTime;
-            yield return null;
-        }
-
-        // yield return new WaitForSeconds(settings.AttackDelay);
-        timeTillNextAttack = settings.AttackDelay;
-
         isReadyToAttack = true;
-        yield return null;
-    }
-
-    private void KillEnemy(GameObject closestZombie)
-    {
-        print("Attacking");
-        Destroy(closestZombie); // TODO Remove destruction now
-
-        // Play Attack Animation
-        // If the sword attack hits --> Kill Zombie
-        // Start countback for delay --> Kill Enemy
-
-        StopCoroutine(WaitForNextAttack());
-        StartCoroutine(WaitForNextAttack());
     }
 }

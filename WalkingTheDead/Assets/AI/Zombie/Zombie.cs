@@ -6,6 +6,11 @@ using UnityEngine.AI;
 public class Zombie : MonoBehaviour
 {
     [SerializeField] ZombieSettings settings = null;
+    [SerializeField] GameObject[] deadBodies = null;
+
+    public AudioSource zombeAudioSource;
+
+
     Scanner humanScanner;
     NavMeshAgent agent;
     ChaseZombieBehaviour chaseBehaviour;
@@ -18,6 +23,8 @@ public class Zombie : MonoBehaviour
     bool commandGiven;
     bool followPlayer;
     GameObject player;
+    PlayerResources gameManager;
+    
 
     public ZombieSettings Settings { get => settings; }
     public Scanner HumanScanner { get => humanScanner; }
@@ -42,6 +49,11 @@ public class Zombie : MonoBehaviour
         player = GameObject.Find("PlayerCharacter");
         desiredPosition = transform.position;
         commandGiven = false;
+
+        zombeAudioSource.Play();
+
+        // Find Game Manager
+        gameManager = FindObjectOfType<PlayerResources>();
 
         // Setup Navmesh
         agent = GetComponent<NavMeshAgent>();
@@ -73,12 +85,20 @@ public class Zombie : MonoBehaviour
     {
         if (followPlayer) desiredPosition = player.transform.position;
 
-        if (agent.velocity.x != 0 || agent.velocity.z != 0)
+        if (agent.speed == settings.ChaseSpeed)
         {
+            anim.SetBool("Charging", true);
             anim.SetBool("Walking", true);
         }
         else
         {
+            anim.SetBool("Charging", false);
+            anim.SetBool("Walking", true);
+        }
+
+        if (agent.velocity.magnitude < settings.WalkingSpeed / 2.0f)
+        {
+            anim.SetBool("Charging", false);
             anim.SetBool("Walking", false);
         }
     }
@@ -93,40 +113,27 @@ public class Zombie : MonoBehaviour
         PlayerCommand.Click -= RecieveCommand;
     }
 
-    void RecieveCommand(Vector3 position ,bool followPlayer)
+    public void Die()
+    {
+        // Spawn a random dead body - Currently has 1
+        int bodyIndex = Random.Range(0, deadBodies.Length);
+        Vector3 deadPosition = transform.position;
+        deadPosition.y = transform.position.y - transform.localScale.y;
+
+        Instantiate(deadBodies[bodyIndex], deadPosition, transform.rotation);
+
+        gameManager.numberOFZombies--;
+
+        // Kill yourself
+        Destroy(gameObject);
+    }
+
+    void RecieveCommand(Vector3 position, bool followPlayer)
     {
         desiredPosition = position;
         agent.SetDestination(desiredPosition);
         commandGiven = true;
         this.followPlayer = followPlayer;
     }
-    void KillClosestHuman()
-    {
-        GameObject toKill = humanScanner.GetClosestTargetInRange();
 
-        if (toKill != null && (Vector3.Distance(transform.position, toKill.transform.position)) < Settings.AttackRange)
-        {
-            // humanScanner.ObjectsInRange.Remove(toKill);
-            MeleeSoldier potentiallySoldier = toKill.GetComponent<MeleeSoldier>();
-
-            if (potentiallySoldier)
-            {
-                potentiallySoldier.Die();
-            }
-            else
-            {
-                Villager villager = toKill.GetComponent<Villager>();
-
-                if (villager)
-                {
-                    villager.Die();
-                }
-            }
-
-            
-
-            // Destroy(toKill);
-            toKill = null;
-        }
-    }
 }

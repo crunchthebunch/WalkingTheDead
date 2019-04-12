@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Inner class for animation
+struct AnimationHashIDs
+{
+    public int isChasingID;
+    public int isWalkingID;
+    public int attackID;
+}
+
 public class MeleeSoldier : MonoBehaviour
 {
     [SerializeField] MeleeSoldierSettings settings = null;
@@ -10,8 +18,13 @@ public class MeleeSoldier : MonoBehaviour
 
     [SerializeField] GameObject [] deadBodies = null;
 
+    AudioSource soldierAudioSource;
+
+    PlayerResources gameManager;
     NavMeshAgent agent;
     Scanner zombieScanner;
+    Animator animator;
+    AnimationHashIDs animationIDs;
 
     // Behaviours
     PatrolMeleeSoldierBehaviour patrolBehaviour;
@@ -28,15 +41,27 @@ public class MeleeSoldier : MonoBehaviour
 
     public List<GameObject> AdditionalPatrolpositions { get => additionalPatrolpositions; }
     public Scanner ZombieScanner { get => zombieScanner; }
-    
+    public PlayerResources GameManager { get => gameManager; }
+    public Animator Animator { get => animator;  }
+    internal AnimationHashIDs AnimationIDs { get => animationIDs; }
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = settings.WalkingSpeed;
 
+        gameManager = FindObjectOfType<PlayerResources>();
+
+        soldierAudioSource = GetComponent<AudioSource>();
+
+        // Setup animations
+        animator = GetComponentInChildren<Animator>();
+        animationIDs.isChasingID = Animator.StringToHash("isChasing");
+        animationIDs.isWalkingID = Animator.StringToHash("isWalking");
+        animationIDs.attackID = Animator.StringToHash("attack");
+
         // Add Scanner
-        zombieScanner = transform.Find("ZombieScanner").GetComponent<Scanner>();
+        zombieScanner = transform.Find("EnemyScanner").GetComponent<Scanner>();
 
         // Add patrol behaviour
         patrolBehaviour = gameObject.AddComponent<PatrolMeleeSoldierBehaviour>();
@@ -53,7 +78,9 @@ public class MeleeSoldier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Add 2 tags
         zombieScanner.SetupScanner("Zombie", settings.Vision);
+        zombieScanner.SetupScanner("Necromancer", settings.Vision);
     }
 
     public void Die()
@@ -65,8 +92,40 @@ public class MeleeSoldier : MonoBehaviour
 
         Instantiate(deadBodies[bodyIndex], deadPosition, transform.rotation);
 
+        // Simulate feeding
+        gameManager.DecreaseHungerLevel();
+
+        soldierAudioSource.Play();
         // Kill yourself
         Destroy(gameObject);
+    }
+
+    void UpdateAnimations()
+    {
+        // Chasing State
+        if (agent.speed == settings.ChaseSpeed)
+        {
+            animator.SetBool(animationIDs.isChasingID, true);
+            animator.SetBool(animationIDs.isWalkingID, false);
+        }
+        // Walking Animation
+        else if (agent.speed == settings.WalkingSpeed)
+        {
+            animator.SetBool(animationIDs.isWalkingID, true);
+            animator.SetBool(animationIDs.isChasingID, false);
+        }
+
+        // Idle
+        if (agent.velocity.magnitude < settings.WalkingSpeed / 2.0f)
+        {
+            animator.SetBool(animationIDs.isWalkingID, false);
+            animator.SetBool(animationIDs.isChasingID, false);
+        }
+    }
+
+    private void Update()
+    {
+        UpdateAnimations();
     }
 
     private void OnDrawGizmos()

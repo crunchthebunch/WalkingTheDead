@@ -8,12 +8,20 @@ public class AttackZombieBehaviour : Behaviour
     ZombieSettings settings;
     Zombie owner;
     Scanner ownerScanner;
+    bool isReadyToAttack;
+    ZombieAnimationScript animationEvent;
+    Animator animator;
+    float attackDelay = 1.0f;
 
     NavMeshAgent agent;
 
     public override void DoBehaviour()
     {
-        AttackClosestVillager();
+        if (ownerScanner.ObjectsInRange.Count > 0)
+        {
+            StopCoroutine(AttackClosestEnemy());
+            StartCoroutine(AttackClosestEnemy());
+        }
     }
 
     private void Awake()
@@ -22,17 +30,48 @@ public class AttackZombieBehaviour : Behaviour
         agent = owner.Agent;
         settings = owner.Settings;
         ownerScanner = owner.HumanScanner;
+        animator = owner.Anim;
+        isReadyToAttack = true;
+        animationEvent = GetComponentInChildren<ZombieAnimationScript>();
     }
 
-    void AttackClosestVillager()
+    IEnumerator AttackClosestEnemy()
     {
         GameObject ToKill = owner.HumanScanner.GetClosestTargetInRange();
+
+        // If it exists
+        if (ToKill)
+        {
+            Vector3 enemyPosition = ToKill.transform.position;
+
+            // If the closest Enemy is in range
+            while (Vector3.Distance(enemyPosition, transform.position) > settings.AttackRange)
+            {
+                yield return null;
+            }
+
+            // Attack if ready to attack
+            if (isReadyToAttack)
+            {
+                // Kill the zombie
+                isReadyToAttack = false;
+                print("Attacking");
+                animationEvent.SetClosestEnemy(ToKill);
+                animator.SetTrigger("Attack");
+            }
+
+            yield return null;
+        }
+
         
 
-        if (ToKill != null && Vector3.Distance(owner.transform.position, ToKill.transform.position) < settings.AttackRange/1.5f)
-        {
-            owner.Anim.SetTrigger("Attack");
-            agent.velocity = agent.velocity/2.0f;
-        }
+        yield return null;
     }
+
+    // To call from event script
+    public void AttackCoolDown()
+    {
+        isReadyToAttack = true;
+    }
+
 }

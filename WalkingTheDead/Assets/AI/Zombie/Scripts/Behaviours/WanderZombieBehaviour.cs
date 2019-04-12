@@ -21,6 +21,10 @@ public class WanderZombieBehaviour : Behaviour
             agent.speed = settings.WalkingSpeed;
             startedWandering = true;
         }
+        else
+        {
+            agent.speed = settings.WalkingSpeed;
+        }
 
         if (Random.value < settings.WanderChance)
         {
@@ -41,5 +45,6 @@ public class WanderZombieBehaviour : Behaviour
     {
         Vector3 wanderPosition = owner.DesiredPosition + Random.insideUnitSphere * settings.WalkRadius;
         agent.SetDestination(wanderPosition);
+        agent.speed = settings.WalkingSpeed;
     }
 }

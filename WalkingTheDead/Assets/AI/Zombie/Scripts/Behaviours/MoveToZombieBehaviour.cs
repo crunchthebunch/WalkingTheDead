@@ -23,6 +23,7 @@ public class MoveToZombieBehaviour : Behaviour
         agent = owner.Agent;
         settings = owner.Settings;
     }
+
     void MoveTo()
     {
         agent.SetDestination(owner.DesiredPosition);
