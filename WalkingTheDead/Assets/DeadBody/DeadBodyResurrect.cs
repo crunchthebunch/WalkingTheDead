@@ -8,7 +8,7 @@ public class DeadBodyResurrect : MonoBehaviour
 
     Animator anim;
 
-    [SerializeField] GameObject playerObject = null;
+    GameObject playerObject = null;
 
     [SerializeField] GameObject zombieSpawn = null;
 
