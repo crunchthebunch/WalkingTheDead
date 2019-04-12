@@ -61,7 +61,6 @@ public class AttackMeleeSoldierBehaviour : Behaviour
             {
                 // Kill the zombie
                 isReadyToAttack = false;
-                print("Attacking");
                 animationEvent.SetClosestEnemy(closestEnemy);
                 animator.SetTrigger("attack");
             }
@@ -81,8 +80,10 @@ public class AttackMeleeSoldierBehaviour : Behaviour
     {
         isReadyToAttack = false;
 
+        print("Waiting for Attack");
         yield return new WaitForSeconds(settings.AttackDelay);
 
+        print("Can attack again");
         isReadyToAttack = true;
     }
 }

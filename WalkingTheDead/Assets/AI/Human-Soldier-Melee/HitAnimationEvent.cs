@@ -50,6 +50,8 @@ public class HitAnimationEvent : MonoBehaviour
             // Have attack cooldown - if its alive
             if (attackBehaviour)
                 attackBehaviour.AttackCoolDown();
+            else
+                print("Doesn't exist");
 
         }
     }

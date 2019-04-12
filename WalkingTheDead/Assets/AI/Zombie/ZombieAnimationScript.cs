@@ -5,13 +5,11 @@ using UnityEngine;
 public class ZombieAnimationScript : MonoBehaviour
 {
     AttackZombieBehaviour attackBehaviour;
-    Scanner enemyScanner;
     GameObject closestEnemy = null;
     PlayerResources gameManager;
 
     private void Awake()
     {
-        enemyScanner = GetComponent<Scanner>();
         gameManager = FindObjectOfType<PlayerResources>();
     }
 
@@ -30,12 +28,18 @@ public class ZombieAnimationScript : MonoBehaviour
 
         if (closestEnemy)
         {
-            MeleeSoldier zombie = closestEnemy.GetComponent<MeleeSoldier>();
+            MeleeSoldier soldier = closestEnemy.GetComponent<MeleeSoldier>();
+            Villager villager = closestEnemy.GetComponent<Villager>();
 
             // See if this is a zombie
-            if (zombie)
+            if (soldier)
             {
-                zombie.Die(); // TODO Add delayed animation trigger event
+                soldier.Die(); // TODO Add delayed animation trigger event
+            }
+            // If it's a villager
+            else if(villager)
+            {
+                villager.Die();
             }
             // Else its a necromancer
             else

@@ -22,10 +22,6 @@ public class AttackZombieBehaviour : Behaviour
             StopCoroutine(AttackClosestEnemy());
             StartCoroutine(AttackClosestEnemy());
         }
-        else
-        {
-            print("No Objects in Range");
-        }
     }
 
     private void Awake()
@@ -59,7 +55,7 @@ public class AttackZombieBehaviour : Behaviour
             {
                 // Kill the zombie
                 isReadyToAttack = false;
-                print("Zombie Attacking");
+                print("Attacking");
                 animationEvent.SetClosestEnemy(ToKill);
                 animator.SetTrigger("Attack");
             }
@@ -85,7 +81,6 @@ public class AttackZombieBehaviour : Behaviour
 
         yield return new WaitForSeconds(attackDelay);
 
-        print("Zombie Delay Over");
         isReadyToAttack = true;
     }
 
