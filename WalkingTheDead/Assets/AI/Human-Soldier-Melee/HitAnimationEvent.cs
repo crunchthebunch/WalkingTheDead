@@ -46,12 +46,7 @@ public class HitAnimationEvent : MonoBehaviour
                     gameManager.DecreaseHealth();
                 }
             }
-
-            // Have attack cooldown - if its alive
-            if (attackBehaviour)
-                attackBehaviour.AttackCoolDown();
-            else
-                print("Doesn't exist");
+            attackBehaviour.AttackCoolDown();
 
         }
     }

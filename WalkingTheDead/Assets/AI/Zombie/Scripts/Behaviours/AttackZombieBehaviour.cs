@@ -71,16 +71,6 @@ public class AttackZombieBehaviour : Behaviour
     // To call from event script
     public void AttackCoolDown()
     {
-        StopCoroutine(WaitForNextAttack());
-        StartCoroutine(WaitForNextAttack());
-    }
-
-    IEnumerator WaitForNextAttack()
-    {
-        isReadyToAttack = false;
-
-        yield return new WaitForSeconds(attackDelay);
-
         isReadyToAttack = true;
     }
 

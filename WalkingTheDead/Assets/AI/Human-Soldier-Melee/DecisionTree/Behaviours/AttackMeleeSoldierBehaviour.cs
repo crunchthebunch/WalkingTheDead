@@ -72,18 +72,6 @@ public class AttackMeleeSoldierBehaviour : Behaviour
     // To call from event script
     public void AttackCoolDown()
     {
-        StopCoroutine(WaitForNextAttack());
-        StartCoroutine(WaitForNextAttack());
-    }
-
-    IEnumerator WaitForNextAttack()
-    {
-        isReadyToAttack = false;
-
-        print("Waiting for Attack");
-        yield return new WaitForSeconds(settings.AttackDelay);
-
-        print("Can attack again");
         isReadyToAttack = true;
     }
 }
