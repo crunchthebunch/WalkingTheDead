@@ -8,6 +8,9 @@ public class Zombie : MonoBehaviour
     [SerializeField] ZombieSettings settings = null;
     [SerializeField] GameObject[] deadBodies = null;
 
+    public AudioSource zombeAudioSource;
+
+
     Scanner humanScanner;
     NavMeshAgent agent;
     ChaseZombieBehaviour chaseBehaviour;
@@ -46,6 +49,8 @@ public class Zombie : MonoBehaviour
         player = GameObject.Find("PlayerCharacter");
         desiredPosition = transform.position;
         commandGiven = false;
+
+        zombeAudioSource.Play();
 
         // Find Game Manager
         gameManager = FindObjectOfType<PlayerResources>();
