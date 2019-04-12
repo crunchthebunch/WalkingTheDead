@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerResources : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public float playerHealth;
     public float hungerValue;
@@ -12,6 +12,7 @@ public class PlayerResources : MonoBehaviour
     public float maxHealth = 100.0f;
     public float maxHunger = 100.0f;
     public int numberOFZombies;
+    bool isPlayerTarget;
 
     public Slider healthBar;
     public Slider hungerBar;
@@ -26,8 +27,10 @@ public class PlayerResources : MonoBehaviour
     PlayerMovement necromancer;
 
     public ParticleSystem clickSystemEffect;
-
     Camera mainCamera;
+
+    // Zombies can target the player
+    public bool IsPlayerTarget { get => isPlayerTarget; }
 
     // Start is called before the first frame update
     void Awake()
@@ -35,6 +38,7 @@ public class PlayerResources : MonoBehaviour
         playerHealth = maxHealth;
         hungerValue = maxHunger;
         baseHungerDecrement = -0.001f;
+        isPlayerTarget = false;
 
         healthBar.value = CalculateHealth();
         hungerBar.value = CalculateHunger();
@@ -58,6 +62,18 @@ public class PlayerResources : MonoBehaviour
         hungerBar.value = CalculateHunger();
 
         healthBar.value = CalculateHealth();
+
+        // If the hunger level is down
+        if (hungerValue < 30.0f)
+        {
+            // Make player a target for zombies
+            isPlayerTarget = true;
+        }
+        else
+        {
+            // Else don't target him
+            isPlayerTarget = false;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class HitAnimationEvent : MonoBehaviour
 {
     AttackMeleeSoldierBehaviour attackBehaviour;
-    PlayerResources gameManager;
+    GameManager gameManager;
     Scanner enemyScanner;
     GameObject closestEnemy = null;
 
@@ -16,7 +16,7 @@ public class HitAnimationEvent : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = FindObjectOfType<PlayerResources>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Start()

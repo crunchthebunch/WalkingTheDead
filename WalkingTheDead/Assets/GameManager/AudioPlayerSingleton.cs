@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AudioPlayerSingleton : MonoBehaviour
 {
-    
-
     AudioSource backGroundMusic;
 
     private void Awake()

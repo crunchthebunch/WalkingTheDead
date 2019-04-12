@@ -195,9 +195,9 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: fa5fa91b0da50414fa2cd76e42057e63, type: 2}
   additionalPatrolpositions: []
   deadBodies:
-  - {fileID: 3309151971139950578, guid: dc23b60a57783d844968227d204ef450, type: 3}
-  - {fileID: 3309151971139950578, guid: 4cfd9b2a730692d42951ea84f33703b0, type: 3}
-  - {fileID: 3309151971139950578, guid: fa4f8ab28a3bb3c43863cff77795e86e, type: 3}
+  - {fileID: 3309151971139950578, guid: 5b8e59bf747520b459551135358f11cb, type: 3}
+  - {fileID: 3309151971139950578, guid: 7b7bfedbfddd39d4989b7e45141295e3, type: 3}
+  - {fileID: 3309151971139950578, guid: d456e6fc9df8c96499b596cf3dd8af12, type: 3}
 --- !u!114 &1546054276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +370,7 @@ PrefabInstance:
     - target: {fileID: 13700000, guid: c8b4f98526f4d7a4fb837e978676de44, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a4bacf8afd6cba64fb26f9309f92317e, type: 2}
+      objectReference: {fileID: 2100000, guid: cf764c371d6bc244db391671c5d0adbe, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8b4f98526f4d7a4fb837e978676de44, type: 3}
 --- !u!1 &5798832293188142025 stripped
