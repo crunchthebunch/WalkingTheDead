@@ -20,7 +20,7 @@ public class MeleeSoldier : MonoBehaviour
 
     AudioSource soldierAudioSource;
 
-    PlayerResources gameManager;
+    GameManager gameManager;
     NavMeshAgent agent;
     Scanner zombieScanner;
     Animator animator;
@@ -41,7 +41,7 @@ public class MeleeSoldier : MonoBehaviour
 
     public List<GameObject> AdditionalPatrolpositions { get => additionalPatrolpositions; }
     public Scanner ZombieScanner { get => zombieScanner; }
-    public PlayerResources GameManager { get => gameManager; }
+    public GameManager GameManager { get => gameManager; }
     public Animator Animator { get => animator;  }
     internal AnimationHashIDs AnimationIDs { get => animationIDs; }
 
@@ -50,7 +50,7 @@ public class MeleeSoldier : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = settings.WalkingSpeed;
 
-        gameManager = FindObjectOfType<PlayerResources>();
+        gameManager = FindObjectOfType<GameManager>();
 
         soldierAudioSource = GetComponent<AudioSource>();
 

@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     Animator anim;
 
-    public float walkSpeed = 5.0f;
+    public float walkSpeed = 10.0f;
 
     Quaternion tempQuaternion = Quaternion.Euler(30.0f, 0.0f, 30.0f);
 

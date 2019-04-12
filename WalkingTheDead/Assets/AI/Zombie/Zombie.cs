@@ -23,7 +23,7 @@ public class Zombie : MonoBehaviour
     bool commandGiven;
     bool followPlayer;
     GameObject player;
-    PlayerResources gameManager;
+    GameManager gameManager;
     
 
     public ZombieSettings Settings { get => settings; }
@@ -53,7 +53,7 @@ public class Zombie : MonoBehaviour
         zombeAudioSource.Play();
 
         // Find Game Manager
-        gameManager = FindObjectOfType<PlayerResources>();
+        gameManager = FindObjectOfType<GameManager>();
 
         // Setup Navmesh
         agent = GetComponent<NavMeshAgent>();
@@ -83,23 +83,52 @@ public class Zombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (followPlayer) desiredPosition = player.transform.position;
+        if (followPlayer && !gameManager.IsPlayerTarget) desiredPosition = player.transform.position;
 
+        // Charging
         if (agent.speed == settings.ChaseSpeed)
         {
             anim.SetBool("Charging", true);
             anim.SetBool("Walking", true);
         }
+        // Walking
         else
         {
             anim.SetBool("Charging", false);
             anim.SetBool("Walking", true);
         }
 
+        // Idle
         if (agent.velocity.magnitude < settings.WalkingSpeed / 2.0f)
         {
             anim.SetBool("Charging", false);
             anim.SetBool("Walking", false);
+        }
+
+        // Make player a target if needed
+        ReactToHungerLevel();
+    }
+
+    private void ReactToHungerLevel()
+    {
+        // Check if the hunger level is big enough
+        if (gameManager.IsPlayerTarget)
+        {
+            // Check if player is already added to the list
+            if (!humanScanner.ObjectsInRange.Contains(player))
+            {
+                // If not, add it
+                humanScanner.ObjectsInRange.Add(player);
+            }
+        }
+        else
+        {
+            // Check if player is still in the container
+            if (humanScanner.ObjectsInRange.Contains(player))
+            {
+                // If so remove it
+                humanScanner.ObjectsInRange.Remove(player);
+            }
         }
     }
 
