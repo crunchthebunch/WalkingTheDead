@@ -65,7 +65,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: db9d2c9a90ea6c846a1a69298cb7b201, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d0e53e3235356449bf6d5085a1bcec2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -300,7 +300,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6de2f182b573bf84bb18be53462c267b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 676ba6d8430e2904bb736fe40f8bcd97, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -383,8 +383,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4286940598
+  m_fontColor: {r: 0.7169812, g: 0.52420795, b: 0.52420795, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1074,7 +1074,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a9eca2b3b79ab0645ae0932919e5b4b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95c8007b2f5c4e54a83013782224b3c2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
