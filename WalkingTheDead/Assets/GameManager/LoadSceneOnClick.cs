@@ -22,13 +22,13 @@ public class LoadSceneOnClick : MonoBehaviour
         }
     }
 
-    public void BackToMainMenu()
+    public void LoadMainMenu()
     {
         //StartCoroutine(Fading("MainMenu"));
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void LoadFirst()
+    public void LoadLevel1()
     {
         //StartCoroutine(Fading("UpdatedFirstLevel"));
         SceneManager.LoadScene("Level_1");

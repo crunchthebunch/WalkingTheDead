@@ -20,8 +20,6 @@ public class DeadBodyResurrect : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         playerObject = GameObject.Find("PlayerCharacter");
         anim = playerObject.GetComponentInChildren<Animator>();
-        //resurrectParticle = Instantiate(resurrectParticle, this.transform.position, this.transform.rotation);
-        //resurrectParticle.Play();
     }
 
     // Update is called once per frame
