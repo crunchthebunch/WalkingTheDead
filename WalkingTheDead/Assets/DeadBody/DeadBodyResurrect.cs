@@ -12,7 +12,7 @@ public class DeadBodyResurrect : MonoBehaviour
 
     [SerializeField] GameObject zombieSpawn = null;
 
-    public ParticleSystem resurrectParticle;
+    //public ParticleSystem resurrectParticle;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,6 +20,8 @@ public class DeadBodyResurrect : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         playerObject = GameObject.Find("PlayerCharacter");
         anim = playerObject.GetComponentInChildren<Animator>();
+        //resurrectParticle = Instantiate(resurrectParticle, this.transform.position, this.transform.rotation);
+        //resurrectParticle.Play();
     }
 
     // Update is called once per frame
@@ -53,6 +55,7 @@ public class DeadBodyResurrect : MonoBehaviour
     {
         Instantiate(zombieSpawn, transform.position, transform.rotation);
         gameManager.numberOFZombies += 1;
+        //Destroy(resurrectParticle);
         Destroy(this.gameObject);
     }
 }

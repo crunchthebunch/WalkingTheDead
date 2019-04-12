@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Zombie-Settings
   m_EditorClassIdentifier: 
   vision: 10
-  walkingSpeed: 2
+  walkingSpeed: 4
   walkRadius: 5
   wanderChance: 0.0025
   chaseSpeed: 6
