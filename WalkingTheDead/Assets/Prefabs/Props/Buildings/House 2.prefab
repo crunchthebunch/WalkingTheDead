@@ -49,6 +49,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WINDOW (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1000061
@@ -116,6 +124,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WINDOW (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.0549927
@@ -182,6 +198,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
       propertyPath: m_Name
       value: WINDOW (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
       propertyPath: m_LocalPosition.x
@@ -254,6 +278,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WINDOW (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.0700073
@@ -320,6 +352,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 31edb0502ae7c69418bd67bd79a1c955, type: 3}
       propertyPath: m_Name
       value: DOOR (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 31edb0502ae7c69418bd67bd79a1c955, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 31edb0502ae7c69418bd67bd79a1c955, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 31edb0502ae7c69418bd67bd79a1c955, type: 3}
       propertyPath: m_LocalPosition.x
@@ -388,6 +428,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildingA (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4e066d313a3b4674cb051c097136533a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4e066d313a3b4674cb051c097136533a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e066d313a3b4674cb051c097136533a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.040008545
@@ -455,6 +503,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WINDOW (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 33b44fb9a9795c74abadb78563cf4d00, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.4989929
@@ -521,6 +577,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: f3b3bce3861c9f24a897bd100b687768, type: 3}
       propertyPath: m_Name
       value: RoofB (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f3b3bce3861c9f24a897bd100b687768, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f3b3bce3861c9f24a897bd100b687768, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f3b3bce3861c9f24a897bd100b687768, type: 3}
       propertyPath: m_LocalPosition.x
