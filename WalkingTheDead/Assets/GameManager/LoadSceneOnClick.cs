@@ -8,20 +8,6 @@ public class LoadSceneOnClick : MonoBehaviour
 {
 
     // Make it a singleton
-    private void Awake()
-    {
-        int numberOfAudioPlayers = FindObjectsOfType<LoadSceneOnClick>().Length;
-
-        if (numberOfAudioPlayers > 1)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(this);
-        }
-    }
-
     public void LoadMainMenu()
     {
         //StartCoroutine(Fading("MainMenu"));
